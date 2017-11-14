@@ -2,6 +2,11 @@
 
 class Os extends CI_Controller {
 
+        public function Monitoramento(){
+            
+           $this->template->load('template','Os/Monitoramento');      
+        }
+
 
 		public function Vinculadas($id_cliente) {
 			$query = $this->db->query("SELECT tb_os.data_entrada, tb_os.id_os, tb_os.nome, tb_os_status.status FROM tb_os LEFT JOIN tb_os_status ON tb_os_status.id_os_status = tb_os.status WHERE id_cliente = ?",array($id_cliente)); 
