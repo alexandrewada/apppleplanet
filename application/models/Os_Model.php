@@ -6,6 +6,27 @@ class Os_Model extends CI_Model
     private $table = 'tb_os';
     public  $lastID;
 
+    public function getOsByStatus($status){
+
+        $query = $this->db->query("
+            SELECT 
+                os.id_os,
+                os.id_cliente
+            FROM
+                tb_os os
+            WHERE
+                os.status = ?
+            ORDER BY os.data_entrada DESC",array($status));
+        
+        if($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+
+       
+    }
+
     public function getAcompanhamento() {
 
     	$id_cliente = $this->session->userdata()[id_usuario];
@@ -61,6 +82,7 @@ class Os_Model extends CI_Model
             return false;
         }
     }
+
     
 
     public function aprovacaoOrcamento($id_cliente) {

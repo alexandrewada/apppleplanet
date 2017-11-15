@@ -117,6 +117,7 @@
                       <li><a><i class="fa fa-wrench"></i> Assistência <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="<?=base_url('os/gerenciar');?>">Gerenciar O.S</a></li>
+                          <li><a href="<?=base_url('os/monitoramento');?>">Monitoramento O.S</a></li>
                           <li><a href="<?=base_url('os/gerenciar?status=4');?>">Aguardando aprovação</a></li>
                           
                            <?if(in_array($perfil,array(2,4,5,6)) == true):?>

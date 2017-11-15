@@ -3,8 +3,14 @@
 class Os extends CI_Controller {
 
         public function Monitoramento(){
-            
-           $this->template->load('template','Os/Monitoramento');      
+            $this->load->model('Os_Model');
+            $view['status_pendente'] = $this->Os_Model->getOsByStatus(1);
+            $view['status_aprovado'] = $this->Os_Model->getOsByStatus(9);
+            $view['status_semreparo'] = $this->Os_Model->getOsByStatus(6);
+            $view['status_aguardando_aprovacao'] = $this->Os_Model->getOsByStatus(4);
+            $view['status_aguardando_retirada'] = $this->Os_Model->getOsByStatus(5);
+
+            $this->template->load('template','Os/Monitoramento',$view);      
         }
 
 
