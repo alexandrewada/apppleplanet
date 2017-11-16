@@ -47,6 +47,10 @@ class Usuario extends CI_Controller {
 
 				$this->load->model("Usuario_Model");
 
+
+				$dadosUserAtual = $this->Usuario_Model->getByID($id_usuario);
+
+
 			 	$this->form_validation->set_rules('nome', 'Nome', 'required|min_length[5]|max_length[30]');
 				$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			 	$this->form_validation->set_rules('senha', 'Senha', 'required|min_length[6]|max_length[12]');
@@ -55,6 +59,13 @@ class Usuario extends CI_Controller {
 				$this->form_validation->set_rules('sexo', 'Sexo', 'required');
 				$this->form_validation->set_rules('tipo_usuario', 'Tipo Usuário', 'required');
 				// $this->form_validation->set_rules('data_nascimento', 'Data de nascimento', 'required|min_length[10]|max_length[10]');
+
+				if($dadosUserAtual->id_perfil != $this->input->post('perfil')){
+					if($_SESSION['id_perfil'] != 2){
+						echo json_encode(array('erro' => true, 'msg' => 'Você não tem permissão para alterar o perfil.'));
+						exit;
+					}
+				}
 				
 				if($this->input->post('tipo_usuario') == 'pf'){
 					$this->form_validation->set_rules('cpf', 'CPF', 'required|min_length[14]|max_length[14]');

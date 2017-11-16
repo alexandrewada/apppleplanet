@@ -67,7 +67,7 @@
 		       			<tr <?=$corStyle;?> >
 		       				<td><?=$v->id_os;?></td>
 		       				<td>
-		       					<a href="javascript: modalAjax('http://sistema.appleplanet.com.br/usuario/abas/<?=$v->id_cliente;?>');">
+		       					<a href="javascript: modalAjax('<?=base_url('usuario/abas/'.$v->id_cliente);?>');">
 		       						<?=$v->nome_cliente;?>
 		       					</a>
 		       					
