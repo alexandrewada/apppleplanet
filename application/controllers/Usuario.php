@@ -184,6 +184,11 @@ class Usuario extends CI_Controller {
 					exit;
 				}
 
+				if($this->input->post('perfil') == 2 AND $_SESSION['id_perfil'] != 2){
+					echo json_encode(array('erro' => true, 'msg' => 'Você não tem permissão para criar um usuário admin.'));
+					exit;
+				}
+
 				if($this->input->post('tipo_usuario') == 'pf'){
 					if($this->Usuario_Model->getByCPF($this->input->post('cpf')) != false) {
 						echo json_encode(array('erro' => true, 'msg' => 'O CPF '. $this->input->post('cpf') . ' já existe em nosso banco de dados.'));
