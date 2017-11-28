@@ -169,6 +169,7 @@
                                 <option <?=($Os->status == 5) ? 'selected' : '';?>  value="5">Serviço Concluído (Aguardando retirada)</option>
                                 <option <?=($Os->status == 6) ? 'selected' : '';?>  value="6">Não foi possível consertar o aparelho (Aguardando retirada)</option>
                                 <option <?=($Os->status == 11) ? 'selected' : '';?>  value="11">Entrar em contato com assistência</option>
+                                <option <?=($Os->status == 9) ? 'selected' : '';?>  value="9">Orçamento aprovado.</option>
                               </select>
 	                        </div>
 	                      </div>
