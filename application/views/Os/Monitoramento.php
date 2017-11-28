@@ -236,7 +236,7 @@
 		  	</tr>
 
 		  	<tr class='tabela-mcdonalds-codos'>
-	  		<?foreach (array_chunk($status_aguardando_aprovacao, 3) as $row):?>
+	  		<?foreach (array_chunk($status_aguardando_retirada, 3) as $row):?>
 			  	<tr class='tabela-mcdonalds-codos'>
 			  		<?foreach($row as $value):?>
         				<td>
