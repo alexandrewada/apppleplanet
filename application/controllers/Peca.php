@@ -373,6 +373,12 @@ class Peca extends CI_Controller {
         $this->load->model('Peca_Model');
         $view['Listarpecas'] = $this->Peca_Model->getpecas();
         $this->template->load('template','Peca/Gerenciar',$view);
+    }    
+
+    public function Estoque() {
+        $this->load->model('Peca_Model');
+        $view['Listar'] = $this->Peca_Model->getpecasEstoque();
+        $this->template->load('template','Peca/Estoque',$view);
     }
 
     public function Editar($id_peca)

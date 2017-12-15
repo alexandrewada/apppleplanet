@@ -75,7 +75,10 @@
         $(this).html( '<input type="text" placeholder="Procurar '+title+'" style="border: 0px;border-radius: 4px;width: 93%;border: 1px solid #ccc;padding: 5px;"/>' );
     });
 
-	var table = $('#tabela ').DataTable({
+	var table = $('#tabela ').DataTable({dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
 	"oLanguage": {
     "sProcessing": "Aguarde enquanto os dados são carregados ...",
     "sLengthMenu": "Mostrar _MENU_ registros por pagina",

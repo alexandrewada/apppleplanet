@@ -147,6 +147,11 @@
                             <li><a href="<?=base_url('produto/gerenciar');?>">Gerenciar</a></li>
                           <?endif;?>
 
+
+                          <?if(in_array($perfil,array(2,5,6)) == true):?>
+                            <li><a href="<?=base_url('produto/estoque');?>">Estoque Rápido</a></li>
+                          <?endif;?>
+
                         </ul>
                       </li>
 
@@ -170,6 +175,13 @@
                           <?if(in_array($perfil,array(2,5,6,3)) == true):?>
                             <li><a href="<?=base_url('peca/gerenciar');?>">Gerenciar</a></li>
                           <?endif;?>
+
+
+                          <?if(in_array($perfil,array(2,5,6)) == true):?>
+                            <li><a href="<?=base_url('peca/estoque');?>">Estoque Rápido</a></li>
+                          <?endif;?>
+
+
                         </ul>
                       </li>
 
@@ -383,6 +395,22 @@
 
     <!-- Mask -->
     <script src="<?=base_url();?>public/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+
+
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.0/js/dataTables.buttons.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.5.0/js/buttons.flash.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.5.0/js/buttons.html5.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="//cdn.datatables.net/buttons/1.5.0/js/buttons.print.min.js">
+  </script>
 
     <script type="text/javascript">
       $(document).ready(function(){

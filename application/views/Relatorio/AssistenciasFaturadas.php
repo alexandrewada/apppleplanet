@@ -193,9 +193,9 @@
 	      var api = this.api();
 	      $("#informacoes").html('Total de Bruto: R$ ' + (api.column( 3, {page:'current'} ).data().sum()).toFixed(2)+'<br>Total de Lucro Liquido: R$ ' + (api.column( 5, {page:'current'} ).data().sum()).toFixed(2));
 	    },
-	    // dom: 'Bfrtip',
+	    dom: 'Bfrtip',
         buttons: [
-            'csv'
+            'copy', 'csv', 'excel', 'pdf', 'print'
         ],
         exportOptions: {
             modifier: {

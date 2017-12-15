@@ -475,6 +475,12 @@ class Produto extends CI_Controller {
         $this->template->load('template','Produto/Gerenciar',$view);
     }
 
+    public function Estoque() {
+        $this->load->model('Produto_Model');
+        $view['ListarProdutos'] = $this->Produto_Model->getProdutosEstoque();
+        $this->template->load('template','Produto/Estoque',$view);
+    }
+
     public function Editar($id_produto)
     {
         

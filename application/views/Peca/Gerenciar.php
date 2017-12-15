@@ -101,6 +101,10 @@
     });
 
 	var table = $('#tabela ').DataTable({
+	 dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
 	"oLanguage": {
     "sProcessing": "Aguarde enquanto os dados são carregados ...",
     "sLengthMenu": "Mostrar _MENU_ registros por pagina",

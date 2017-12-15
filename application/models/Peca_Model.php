@@ -62,6 +62,16 @@ class Peca_Model extends CI_Model
         } else {
             return false;
         }
+    }   
+
+    public function getPecasEstoque() {
+        $query = $this->db->query("SELECT tb_peca.*, tb_categoria.nome as 'categoria', tb_fornecedor.nome as 'fornecedor'FROM appleplanet.tb_peca LEFT JOIN tb_categoria ON tb_categoria.id_categoria = tb_peca.id_categoria LEFT JOIN tb_fornecedor ON tb_peca.id_fornecedor = tb_fornecedor.id_fornecedor WHERE tb_peca.estoque_minimo_aviso <= tb_peca.estoque_atual ORDER BY tb_peca.estoque_atual ASC,tb_peca.estoque_minimo_aviso DESC");
+
+        if($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
     }
 
 
