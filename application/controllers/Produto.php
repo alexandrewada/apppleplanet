@@ -539,6 +539,7 @@ class Produto extends CI_Controller {
                     $dados['imei']                      = $this->input->post('imei_produto');
                     $dados['preco_compra']              = $this->input->post('preco_compra');
                     $dados['estoque_atual']             = $this->input->post('estoque_atual');
+                    $dados['preco_troca']               = $this->input->post('preco_troca');
                     
                     $dados['ncm']						= $this->input->post('ncm');
                     $dados['extipi']					= $this->input->post('extipi');
@@ -624,6 +625,7 @@ class Produto extends CI_Controller {
                     $dados['codigo_barra']              = $CodigoBarras;
                     $dados['desconto_max']              = $this->input->post('desconto_maximo');
                     $dados['preco_venda']               = $this->input->post('preco_venda');
+                    $dados['preco_troca']               = $this->input->post('preco_troca');
                     $dados['cor']                       = $this->input->post('cor_produto');
                     $dados['imei']                      = $this->input->post('imei_produto');
                     $dados['preco_compra']              = $this->input->post('preco_compra');

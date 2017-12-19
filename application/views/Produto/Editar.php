@@ -156,6 +156,18 @@
                         </div>
                       </div>
 
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Preço de Troca<span class="required">*</span>
+                        </label>
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                          <div class="input-group">
+                            <div class="input-group-addon" style="background-color: purple;color: white;" >R$</div>
+                            <input type="text" class="form-control preco" value="<?=$Produto->preco_troca;?>" name='preco_troca' placeholder="Ex: 1.50">
+                          </div>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Descrição do Produto
                         </label>
