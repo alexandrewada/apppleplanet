@@ -23,8 +23,9 @@
 		            	<th>ID Usuário</th>
 		                <th>Nome</th>
 		                <th>Email</th>
+		                <th>Telefone</th>
 		                <th>Perfil</th>
-		                <th>Loja</th>
+		                <!-- <th>Loja</th> -->
 		                <th>Dt Ùltimo Acesso</th>
 		                <th>Ações</th>
 		            </tr>
@@ -34,8 +35,9 @@
 	                <th>ID Usuário</th>
 	                <th>Nome</th>
 	                <th>Email</th>
+	                <th>Telefone</th>
 	                <th>Perfil</th>
-	                <th>Loja</th>
+	                <!-- <th>Loja</th> -->
 	                <th>Dt Ùltimo Acesso</th>
 	                <th hidden></th>
 	            </tr>
@@ -46,8 +48,9 @@
 		       				<td><?=$v->id_usuario;?></td>
 		       				<td><?=$v->nome;?></td>
 		       				<td><?=$v->email;?></td>
+		       				<td><?=$v->telefone;?></td>
 		       				<td><?=$v->perfil;?></td>
-		       				<td><?=$v->loja;?></td>
+		       				<!-- <td><?=$v->loja;?></td> -->
 		       				<td><?=date('d/m - H:i',strtotime($v->data_ultimo_acesso));?></td>
 		       				<td style="text-align: center;"><i onclick="modalAjax('<?=base_url('usuario/abas/'.$v->id_usuario.'');?>');" class="fa fa-edit"></i></td>
 		       			</tr>
