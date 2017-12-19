@@ -62,6 +62,16 @@ class Produto_Model extends CI_Model
         } else {
             return false;
         }
+    } 
+
+    public function getProdutosTrocas() {
+        $query = $this->db->query("SELECT * FROM appleplanet.tb_produto where id_categoria in (7,12,13)");
+
+        if($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
     }
 
     public function getProdutosEstoque() {

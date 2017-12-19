@@ -528,6 +528,7 @@ class Produto extends CI_Controller {
                     $dados = array();
                     $dados['id_categoria']              = $this->input->post('id_categoria');
                     $dados['id_fornecedor']             = $this->input->post('id_fornecedor');
+                    $dados['estado']                    = $this->input->post('estado');
                     $dados['id_usuario']                = $this->session->userdata()['id_usuario'];
                     $dados['nome']                      = ucwords($this->input->post('nome_produto'));
                     $dados['marca']                     = $this->input->post('marca_produto');
@@ -618,6 +619,7 @@ class Produto extends CI_Controller {
                     $dados['id_loja']                	= $this->session->userdata()['id_loja'];
                     $dados['nome']                      = ucwords($this->input->post('nome_produto'));
                     $dados['marca']                     = $this->input->post('marca_produto');
+                    $dados['estado']                    = $this->input->post('estado');
                     $dados['modelo']                    = $this->input->post('modelo_produto');
                     $dados['codigo_barra']              = $CodigoBarras;
                     $dados['desconto_max']              = $this->input->post('desconto_maximo');
