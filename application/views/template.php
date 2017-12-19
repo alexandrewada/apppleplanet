@@ -219,6 +219,17 @@
                       </li>
                     <?endif;?>
 
+                    <?if(in_array($perfil,array(2,5,4,6,3)) == true):?>
+                      <li><a><i class="fa fa-exchange"></i> Compra ou Troca <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                          <li><a href="<?=base_url('usuario/cadastrar');?>">Compra</a></li>
+                          <li><a href="<?=base_url('usuario/gerenciar');?>">Troca</a></li>
+                        </ul>
+                      </li>
+                    <?endif;?>
+
+
+
                 </ul>
               </div>
 

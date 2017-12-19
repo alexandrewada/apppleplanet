@@ -87,9 +87,13 @@
     });
 
 	var table = $('#tabela ').DataTable({
+		dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
 	"oLanguage": {
     "sProcessing": "Aguarde enquanto os dados são carregados ...",
-    "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+    "sLengthMenu": "Mostrar _MENU_ registros por página",
     "sZeroRecords": "Nenhum registro correspondente ao criterio encontrado",
     "sInfoEmtpy": "Exibindo 0 a 0 de 0 registros",
     "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",

@@ -9,7 +9,7 @@
 	<div class="x_panel">
 
 		<div class="x_title">
-			<h2>Lista de pecas</h2>
+			<h2>Lista de Peças</h2>
 			<div class="clearfix"></div>
 		</div>
 
@@ -21,7 +21,7 @@
 		        <thead>
 		            <tr>
 		            	<th>ID Peça</th>
-		                <th>Peca</th>
+		                <th>Peça</th>
 		                <th>Categoria</th>
 		                <th>Fornecedor</th>
 		                <th>Marca</th>
@@ -32,8 +32,8 @@
 		        </thead>
 		      <tfoot>
 	            <tr>
-					<th>ID peca</th>
-	                <th>peca</th>
+					<th>ID Peça</th>
+	                <th>Peça</th>
 	                <th>Categoria</th>
 	                <th>Fornecedor</th>
 	                <th>Marca</th>
@@ -107,7 +107,7 @@
         ],
 	"oLanguage": {
     "sProcessing": "Aguarde enquanto os dados são carregados ...",
-    "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+    "sLengthMenu": "Mostrar _MENU_ registros por página",
     "sZeroRecords": "Nenhum registro correspondente ao criterio encontrado",
     "sInfoEmtpy": "Exibindo 0 a 0 de 0 registros",
     "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",

@@ -9,7 +9,7 @@
 	<div class="x_panel">
 
 		<div class="x_title">
-			<h2>Lista de Ordem de Serviço</h2>
+			<h2>Lista de Ordens de Serviço</h2>
 			<div class="clearfix"></div>
 		</div>
 
@@ -21,7 +21,7 @@
 		        <thead>
 		            <tr>
 		            	<th>ID OS</th>
-		                <th>Nome cliente</th>
+		                <th>Cliente</th>
 		                <th>Aparelho</th>
 		                <th>CPF</th>
 		                <th>IMEI</th>
@@ -126,7 +126,7 @@
         ],
 	"oLanguage": {
     "sProcessing": "Aguarde enquanto os dados são carregados ...",
-    "sLengthMenu": "Mostrar _MENU_ registros por pagina",
+    "sLengthMenu": "Mostrar _MENU_ registros por página",
     "sZeroRecords": "Nenhum registro correspondente ao criterio encontrado",
     "sInfoEmtpy": "Exibindo 0 a 0 de 0 registros",
     "sInfo": "Exibindo de _START_ a _END_ de _TOTAL_ registros",

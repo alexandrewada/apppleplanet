@@ -45,7 +45,7 @@
 
 
 		<div class="form-group">
-			<label class="control-label col-md-3 col-sm-3 col-xs-12">Digite o número garantia (está no papel da os).<span class="required">*</span>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">Digite o número da garantia (apresentando no papel da O.S.)<span class="required">*</span>
 			</label>
 			<div class="col-md-4 col-sm-6 col-xs-12">
 				<input type="text" name='id_venda' placeholder='Ex: 32242' class="form-control col-md-7 col-xs-12">

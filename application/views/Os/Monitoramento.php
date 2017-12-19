@@ -67,7 +67,7 @@
 <div class='row-fluid'>
 
 <h1 class='text-center'>
-	Monitoramento de Ordens de Serviço.
+	Monitoramento	de	Ordens	de	Serviço.
 </h1>
 
 <h5 class="text-center">
@@ -83,27 +83,27 @@
 			<li>
 				<label>
 					<input type="checkbox" <?=($_GET['status'][1]) ? 'checked' : '';?> name='status[1]' >
-					Aguardando Análise.
+					Aguardando Análise
 				</label>
 			</li><li>
 				<label>
 					<input type="checkbox" <?=($_GET['status'][4]) ? 'checked' : '';?> name='status[4]' >
-					Aguardando Aprovação do Orçamento.
+					Aguardando Aprovação do Orçamento
 				</label>
 			</li><li>
 				<label>
 					<input type="checkbox" <?=($_GET['status'][9]) ? 'checked' : '';?> name='status[9]' >
-					Orçamento Aprovado.
+					Orçamento Aprovado
 				</label>
 			</li><li>
 				<label>
 					<input type="checkbox" <?=($_GET['status'][6]) ? 'checked' : '';?> name='status[6]' >
-					Sem Reparo.
+					Sem Reparo
 				</label>
 			</li><li>
 				<label>
 					<input type="checkbox" <?=($_GET['status'][5]) ? 'checked' : '';?> name='status[5]' >
-					Aguardando Retirada.
+					Aguardando Retirada
 				</label>
 			</li>
 
@@ -149,7 +149,7 @@
 		  <tbody>
 		  	<tr>
 		  		<td colspan="3">
-		  			<h5 class='tabela-mcdonalds-titulo'>Aguardando Aprovação do Orçamento.</h5>
+		  			<h5 class='tabela-mcdonalds-titulo'>Aguardando Aprovação do Orçamento</h5>
 		  		</td>
 		  	</tr>
 
@@ -177,7 +177,7 @@
 		  <tbody>
 		  	<tr>
 		  		<td colspan="3">
-		  			<h5 class='tabela-mcdonalds-titulo'>Orçamento Aprovado.</h5>
+		  			<h5 class='tabela-mcdonalds-titulo'>Orçamento Aprovado</h5>
 		  		</td>
 		  	</tr>
 
@@ -203,7 +203,7 @@
 		  <tbody>
 		  	<tr>
 		  		<td colspan="3">
-		  			<h5 class='tabela-mcdonalds-titulo'>Sem Reparo.</h5>
+		  			<h5 class='tabela-mcdonalds-titulo'>Sem Reparo</h5>
 		  		</td>
 		  	</tr>
 
@@ -231,7 +231,7 @@
 		  <tbody>
 		  	<tr>
 		  		<td colspan="3">
-		  			<h5 class='tabela-mcdonalds-titulo'>Aguardando retirada.</h5>
+		  			<h5 class='tabela-mcdonalds-titulo'>Aguardando Retirada</h5>
 		  		</td>
 		  	</tr>
 

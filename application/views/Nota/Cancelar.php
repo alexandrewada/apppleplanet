@@ -1,13 +1,13 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
   <div class="x_panel">
     <div class="x_title">
-      <h2>Cancelar nota fiscal</h2>
+      <h2>Cancelar Nota Fiscal</h2>
       
       <div class="clearfix"></div>
     </div>
     <div class="x_content">
       <br>
-      <h3 class="text-center">Aonde fica os dados necessários para cancelar uma NF-e?</h3>
+      <h3 class="text-center">Aonde ficam os  dados necessários para  cancelar  uma NF-e?</h3>
       <DIV class='text-center'>
       <img width="70%"  src="<?=base_url('public/images/nfe-modelo.png');?>"/>
       </DIV>
@@ -42,7 +42,7 @@
   </div>
   <div class="form-group">
     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-      <button type="submit" class="btn btn-primary">Cancelar nota</button>
+      <button type="submit" class="btn btn-primary">Cancelar Nota</button>
     </div>
   </div>
 </form>
