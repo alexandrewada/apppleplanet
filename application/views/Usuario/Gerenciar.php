@@ -24,6 +24,7 @@
 		                <th>Nome</th>
 		                <th>Email</th>
 		                <th>Telefone</th>
+		                <th>Celular</th>
 		                <th>Perfil</th>
 		                <!-- <th>Loja</th> -->
 		                <th>Dt Ùltimo Acesso</th>
@@ -36,6 +37,7 @@
 	                <th>Nome</th>
 	                <th>Email</th>
 	                <th>Telefone</th>
+	                <th>Celular</th>
 	                <th>Perfil</th>
 	                <!-- <th>Loja</th> -->
 	                <th>Dt Ùltimo Acesso</th>
@@ -49,6 +51,7 @@
 		       				<td><?=$v->nome;?></td>
 		       				<td><?=$v->email;?></td>
 		       				<td><?=$v->telefone;?></td>
+		       				<td><?=$v->celular;?></td>
 		       				<td><?=$v->perfil;?></td>
 		       				<!-- <td><?=$v->loja;?></td> -->
 		       				<td><?=date('d/m - H:i',strtotime($v->data_ultimo_acesso));?></td>

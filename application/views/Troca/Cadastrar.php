@@ -1,31 +1,9 @@
-<script src="<?=base_url();?>public/js/usuario/cadastrar.js"></script>
-    
+
+<script src="<?=base_url();?>public/js/troca/troca.js?v=<?=rand(1000,10000);?>"></script>
+
+
 <script type="text/javascript">
-  $(function(){
-
-    $("select[name='tipo_usuario']").change(function(){
-        var tipo = $(this).val();
-
-        if(tipo == 'pj') {
-          $(".hiddenCNPJ,.hiddenIE").show();
-          $(".hiddenCPF").hide();
-         
-          $("input[name='cnpj']").prop('disabled',false);
-          $("input[name='ie']").prop('disabled',false);
-          $("input[name='cpf']").prop('disabled',true);
-         
-
-        } else if(tipo == 'pf') {
-          $(".hiddenCNPJ,.hiddenIE").hide();
-          $(".hiddenCPF").show();
-          $("input[name='ie']").prop('disabled',true);
-          $("input[name='cnpj']").prop('disabled',true);
-          $("input[name='cpf']").prop('disabled',false);
-         
-        }
-
-    });
-  });
+  
 </script>
 
 
@@ -38,7 +16,7 @@
                   </div>
                   <div class="x_content">
                     <br>
-                    <form  id="ajaxForm" action='<?=base_url('usuario/cadastrar');?>'' method='POST' class="form-horizontal form-label-left" >
+                    <form  id="ajaxForm" action='<?=base_url('troca/cadastrar');?>'' method='POST' class="form-horizontal form-label-left" >
                       
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo<span class="required">*</span>
@@ -263,7 +241,8 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Estado 
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Estado
+                        <span class="required">*</span> 
                         </label>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                           <input type="text" name='estado' placeholder="Ex: Novo, Semi-novo, Usado"  class="form-control col-md-7 col-xs-12">
@@ -329,7 +308,7 @@
                         <div class="col-md-2 col-sm-6 col-xs-12">
                           <div class="input-group">
                             <div class="input-group-addon" style="background-color: #e45f5c;color: white;">R$</div>
-                            <input type="text" class="form-control preco" name='preco_compra' placeholder="Ex: 1.50">
+                            <input type="text" class="form-control preco" value="10.00" name='preco_compra' placeholder="Ex: 1.50">
                           </div>
                         </div>
                       </div>
@@ -348,12 +327,12 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Aparelho
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Aparelho <span class="required">*</span>
                     </label>
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                      <select class='form-control'>
+                      <select name='id_produto_troca' class='form-control'>
                         <?foreach ($produtos_troca as $key => $v):?>
-                          <option data-json="<?=json_encode($v);?>" ><?=$v->nome;?> - <?=$v->cor;?> - <?=$v->preco_venda;?></option>
+                          <option value="<?=$v->id_produto;?>" data-json='<?=json_encode($v);?>' ><?=$v->nome;?> (<?=$v->estoque_atual;?>) - <?=$v->cor;?> - R$ <?=$v->preco_troca;?></option>
                         <?endforeach;?>
                                  
                       </select>
@@ -361,8 +340,115 @@
                   </div>
 
 
-              
+                  <div class="x_title">
+                    <h2>Pagamento</h2>
+                  
+                    <div class="clearfix"></div>
+                  </div>
 
+      
+    <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Forma de Pagamento<span class="required">*</span>
+      </label>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <select name='forma_pagamento' class="form-control col-md-7 col-xs-12">
+          <?if($formapagamentos != false):?>
+          <option value='' selected>Escolha a forma de pagamento.</option>
+          <?foreach ($formapagamentos as $key => $v):?>
+          <option value='<?=$v->id_formapagamento;?>'><?=$v->tipo;?></option>
+          <?endforeach;?>
+          <?endif;?>
+        </select>
+      </div>
+    </div>
+    
+    <div id='desconto' class="form-group" hidden>
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">Desconto
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <select name='desconto' class='form-control'>
+          <option value='0'>Sem desconto</option>
+          
+
+                    <?if(in_array($this->session->userdata()[id_perfil],array(2)) == true):?>
+            <?for($i=1; $i <= 50; $i++):?>
+              <option value='<?=$i;?>'><?=$i;?>%</option>
+            <?endfor;?>
+          <?else:?>
+            <?for($i=1; $i <= 5; $i++):?>
+              <option value='<?=$i;?>'><?=$i;?>%</option>
+            <?endfor;?>
+          <?endif;?>
+            
+
+
+
+
+        </select>
+      </div>
+    </div>
+    
+
+    <div id='parcelamento' class="form-group" >
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">Parcelamento
+        <span class="required">*</span>
+      </label>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <select name='numero_parcelas' class='form-control'>
+          <option value='1'>À vista</option>
+          <?for($i=2; $i < 13; $i++):?>
+            <option value='<?=$i;?>'><?=$i;?>x no cartão de crédito</option>
+          <?endfor;?>
+        </select>
+        <input type="checkbox" name='jurosparcelamento'> <label>Aplicar Juros por parcela para o cliente ?</label>
+      </div>
+    </div>
+    
+
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">Imprimir a garantia? <input type="checkbox" name='garantia'>
+        <span class="required">*</span>
+      </label>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+        <input type='text' name='nome_cliente_garantia' class='form-control' placeholder="Nome do Cliente" style="display: none;">
+      </div>
+
+      <div class="col-md-3 col-sm-1 col-xs-1">
+        <input type='text' name='email_cliente_garantia' class='form-control' placeholder="Email" style="display: none;">
+      </div>
+
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <input type='text' name='cpf_cliente_garantia' class='form-control' data-inputmask="'mask': '999.999.999.99'" maxlength="14" placeholder="CPF do Cliente" style="display: none;">
+      </div>
+
+
+      <div class="col-md-1 col-sm-1 col-xs-1">
+        <input type='number' name='meses_cliente_garantia' class='form-control' placeholder="Meses de Garantia" style="display: none;">
+      </div>
+    </div>
+        
+
+
+    <div class="form-group">
+      <label class="control-label col-md-3 col-sm-3 col-xs-12">Emitir nota? <input type="checkbox" name='notafiscal'>
+        <span class="required">*</span>
+      </label>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <input type='text' name='cpf_cliente' class='form-control' data-inputmask="'mask': '999.999.999.99'" maxlength="14" placeholder="CPF do Cliente" style="display: none;">
+      
+      </div>
+      
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <input type='text' name='cnpj_cliente' class='form-control' data-inputmask="'mask': '99.999.999/9999-99'" maxlength="18" placeholder=" OU CNPJ do Cliente" style="display: none;">
+      </div>
+    </div>
+    
+    
+    <h3 class='text-right'>Total diferencia á pagar <br><br><span id='total_produto'>0.00</span></h3>
+  
 
                       
                     <div class="x_title">
@@ -373,7 +459,12 @@
                           </div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                          <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+
+                          <input type="hidden" name="perfil" value="1">
+                          <input type="hidden" name="id_loja" value="1">
+                          
+
+                          <button type="submit" class="btn btn-primary">Efetuar Troca</button>
                           <!-- <button id='limpar' class="btn btn-primary">Limpar</button> -->
                
                         </div>

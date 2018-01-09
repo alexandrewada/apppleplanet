@@ -2,7 +2,7 @@ $(function(){
 	$("input[name='cep']").blur(function(e){
 		var cep = $(this).val();
 
-		$.get(base_url+"webservice/cep/"+cep,function(r){
+		$.get("//api.postmon.com.br/v1/cep/"+cep,function(r){
 			if(r.erro == 1) {	
 				$("input[name='cep']").css('border','1px solid red');
 	  			$("#aposCEP").hide();
@@ -21,4 +21,5 @@ $(function(){
 		});
 
 	});
+
 });

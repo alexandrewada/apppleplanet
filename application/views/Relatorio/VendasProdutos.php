@@ -62,6 +62,10 @@
 		       			case '2':
 		       				$status_venda = 'RETORNO';
 		       			break;
+
+		       			case '5':
+		       				$status_venda = 'TROCA';
+		       			break;
 	
 		       			default:
 							$status_venda = 'ERRO';
