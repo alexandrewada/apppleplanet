@@ -911,6 +911,7 @@ public function Cadastrar($id_usuario)
                     $dados = array();
                     $dados['id_categoria']              = $this->input->post('id_categoria');
                     $dados['id_cliente']                = $this->input->post('id_usuario');
+                    $dados['garantia_apple']            = $this->input->post('garantia_apple');
                     $dados['id_loja']                   = $this->session->userdata()['id_loja'];
                     $dados['id_criador']                = $this->session->userdata()['id_usuario'];
                     $dados['nome']                      = ucwords($this->input->post('nome'));
