@@ -45,6 +45,18 @@
                         </div>
                       </div>
 
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Aparelho está na garantia da Apple?<span class="required">*</span>
+                        </label>
+                        <div class="col-md-2 col-sm-6 col-xs-12">
+                          <select name='garantia_apple' class='form-control'>
+                    		   <option value='1'>Sim</option>
+                    		   <option value='0'>Não</option>
+                          </select>
+                        </div>
+                      </div>
+
+
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Marca & Fabricante<span class="required">*</span>
