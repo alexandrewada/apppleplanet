@@ -180,8 +180,8 @@
             <td class='campo'>IMEI:</td>
             <td class='valor'><?=$os->imei;?></td>
 
-            <td class='campo'></td>
-            <td class='valor'></td>
+            <td class='campo'>Garantia Apple:</td>
+            <td class='valor'><?=($os->garantia_apple > 0) ? 'Sim' : 'Não';?></td>
           </tr>
 
           <tr>
@@ -215,8 +215,8 @@
             <td class='campo'>Marca:</td>
             <td class='valor'><?=$os->marca;?></td>
            
-            <td class='campo'></td>
-            <td class='valor'></td>
+            <td class='campo'>Cor:</td>
+            <td class='valor'><?=$os->cor;?></td>
 
             <td class='campo'></td>
             <td class='valor'></td>
