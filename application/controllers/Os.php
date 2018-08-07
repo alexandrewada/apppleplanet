@@ -655,6 +655,13 @@ class Os extends CI_Controller {
         $this->load->view('Os/Historico',$view);
     }
 
+    public function Comment($id_os) {
+        $this->load->model('Comment_Model');
+        $view['comments'] = $this->Comment_Model->getComments('os',$id_os);
+        $view['id_os']    = $id_os;
+        $this->load->view('Os/Comment',$view);
+    }
+
 
     public function Orcamento($id_orcamento) {
 
