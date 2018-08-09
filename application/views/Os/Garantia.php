@@ -93,7 +93,7 @@
       IPLANET COMERCIO VAREJISTA DE PRODUTOS ELETRONICOS LTDA - EPP | CNPJ: 24.909.865/0001-33<br>Rua Clodomiro Amazonas,1158, Loja 3 - Itaim Bibi - CEP: 04537-002 - São Paulo/SP
       </div>
       <hr></hr>
-       <h4>Termo de Garantia</h4>
+       <h4>Termo de Garantia - OS #<?=$os->id_os;?></h4>
       <div style="font-size: 12px; text-align: left;">
         <p>
         	Foi realizada a assistência do aparelho <b><?=$os->nome;?></b> em nome do cliente <b><?=$os->nome_cliente;?></b> do CPF <b><?=$os->cpf;?></b> na data <b><?=date('d/m/Y H:i:s',strtotime($os->data_saida));?></b> no qual o aparelho <b><?=$os->nome;?></b> foi entregue em mãos, testado e funcionando pelo cliente, mediante a assinatura de ambas as partes no final deste documento, seguindo então com <b>3 meses de garantia nas peças usadas no conserto</b>, qualquer problema que ocorrer, é obrigatório a apresentação deste termo para validar a garantia, junto ao documento do cliente, a garantia será válida somente até o dia <b><?=date('d/m/Y',strtotime($os->data_saida.' +3 month'));?></b>. 
