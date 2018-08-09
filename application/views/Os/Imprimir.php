@@ -22,7 +22,7 @@
       width: 100%;
       /*background-color: #e9e9e9;*/
 
-     
+
     }
 
     #assinatura {
@@ -53,7 +53,7 @@
 
 
     .campo {
- 
+
       text-align: right;
       font-weight: 600;
       font-size: 12px;
@@ -78,13 +78,13 @@
 
 
   </head>
- 
+
 
 
 
 
   <body>
-  
+
   <div class='os-layout'>
       <div class='logo text-center'  style="
     padding: 10px;" "><img src='http://www.ingles200h.com/appleplanet/public/images/logo-letra-preta.png'/></div>
@@ -102,24 +102,25 @@
         <br>
         <b>Acesse:</b> http://sistema.appleplanet.com.br/<br>
         <b>Login:</b> <?=$os->email;?><br>
-        <b>Senha:</b> <?=$os->senha;?>
+        <b>Senha:</b> <?=$os->senha;?><br>
+        <b>Previsão Orçamento:</b> <?=(new DateTime($os->data_previsao_orcamento))->format('d/m/Y');?><br>
         </p>
       </div>
 
       <hr></hr>
-     
-      A partir da data da entrega do orçamento, o aparelho poderá ficar até 30 dias na assistência, ao passar deste prazo, o aparelho será retido pela loja, e o aparelho será descartado em nosso lixo eletrônico.
-    
+
+      De acordo com o Código de Defesa do Consumidor n° 39.597-SP. O produto não sendo retirado em 90 dias, será retido para cobrir as despesas do serviço.
+
       <hr></hr>
       <h4>Dados do Cliente</h4>
       <table id='dados_do_cliente'>
-         
-          
+
+
           <tbody>
           <tr>
             <td class='campo'>Nome:</td>
             <td class='valor'><?=$os->nome_cliente;?></td>
-           
+
             <td class='campo'>Sexo:</td>
             <td class='valor'><?=$os->sexo;?></td>
 
@@ -128,55 +129,55 @@
           </tr>
 
           <tr>
-          
+
             <td class='campo'>Email:</td>
             <td class='valor'><?=$os->email;?></td>
-           
+
             <td class='campo'>CEP:</td>
             <td class='valor'><?=$os->cep;?></td>
 
             <td class='campo'>Celular:</td>
             <td class='valor'><?=$os->celular;?></td>
-          
+
           </tr>
 
           <tr>
-          
+
             <td class='campo'>Senha:</td>
             <td class='valor'><?=$os->senha;?></td>
-           
+
             <td class='campo'>Bairro:</td>
             <td class='valor'><?=$os->bairro;?></td>
 
             <td class='campo'>Rua:</td>
             <td class='valor'><?=$os->rua;?></td>
-          
+
           </tr>
 
           <tr>
-          
+
             <td class='campo'>CPF:</td>
             <td class='valor'><?=$os->cpf;?></td>
-           
+
             <td class='campo'>Cidade:</td>
             <td class='valor'><?=$os->cidade;?></td>
 
             <td class='campo'>N°:</td>
             <td class='valor'><?=$os->rua_numero;?></td>
-          
+
           </tr>
           </tbody>
       </table>
       <hr></hr>
        <h4>Dados do Aparelho</h4>
       <table id='dados_do_cliente'>
-         
-          
+
+
           <tbody>
           <tr>
             <td class='campo'>Nome:</td>
             <td class='valor'><?=$os->nome;?></td>
-           
+
             <td class='campo'>IMEI:</td>
             <td class='valor'><?=$os->imei;?></td>
 
@@ -185,48 +186,48 @@
           </tr>
 
           <tr>
-          
+
             <td class='campo'>Modelo:</td>
             <td class='valor'><?=$os->modelo;?></td>
-           
+
             <td class='campo'>Senha:</td>
             <td class='valor'><?=$os->senha_aparelho;?></td>
 
             <td class='campo'></td>
             <td class='valor'></td>
-          
+
           </tr>
 
           <tr>
-          
+
             <td class='campo'>Série:</td>
             <td class='valor'><?=$os->serie;?></td>
-           
+
             <td class='campo'>Categoria:</td>
             <td class='valor'><?=$os->categoria;?></td>
 
             <td class='campo'></td>
             <td class='valor'></td>
-          
+
           </tr>
 
           <tr>
-          
+
             <td class='campo'>Marca:</td>
             <td class='valor'><?=$os->marca;?></td>
-           
+
             <td class='campo'>Cor:</td>
             <td class='valor'><?=$os->cor;?></td>
 
             <td class='campo'></td>
             <td class='valor'></td>
-          
+
           </tr>
           </tbody>
 
 
       </table>
-      
+
         <hr></hr>
        <h4>Defeito declarado</h4>
        <div>
@@ -243,7 +244,7 @@
           <span class='cliente'>Ass. Cliente: _________________________</span>
 
           <span class='atendente'>Ass. Atendente: _____________________</span>
-        </div>     
+        </div>
 
       </div>
 

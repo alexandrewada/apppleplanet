@@ -35,6 +35,7 @@
 				
 
 				<li><h3>Dados do orçamento</h3><br></li>
+        <li><b>ID OS:</b> <?=$Os->id_os;?></li>
 				<li><b>CLIENTE:</b> <?=$os_existente[nome];?></li>
 				<li><b>TELEFONE:</b> <?=$os_existente[telefone];?></li>
 				<li><b>CELULAR:</b> <?=$os_existente[celular];?></li>
@@ -72,7 +73,7 @@
 
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Editar Ordem de Serviço</h2>
+                    <h2>Editar Ordem de Serviço #<?=$Os->id_os;?></h2>
                     <span style="float: right;"><a target="_BLANK" href='<?=base_url("os/imprimir/$Os->id_os");?>'>Imprimir Ordem de Serviço</a><br></span>
                     <div class="clearfix"></div>
 
@@ -170,6 +171,7 @@
                                 <option <?=($Os->status == 6) ? 'selected' : '';?>  value="6">Não foi possível consertar o aparelho (Aguardando retirada)</option>
                                 <option <?=($Os->status == 11) ? 'selected' : '';?>  value="11">Entrar em contato com assistência</option>
                                 <option <?=($Os->status == 9) ? 'selected' : '';?>  value="9">Orçamento aprovado.</option>
+                                <option <?=($Os->status == 13) ? 'selected' : '';?>  value="13">Cliente retirou antes.</option>
                               </select>
 	                        </div>
 	                      </div>

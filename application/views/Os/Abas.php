@@ -18,14 +18,14 @@
 					<?if (in_array($this->session->userdata()[id_perfil], array(2, 3, 6)) == true): ?>
 
 						<li role="presentation">
-							<a href="#" id="home-tab" role="tab"  data-url="<?=base_url('os/editar/' . $id_os);?>" data-toggle="tab" aria-expanded="true">Editar Ordem de Serviço</a>
+							<a href="#" id="editar_os" role="tab"  data-url="<?=base_url('os/editar/' . $id_os);?>" data-toggle="tab" aria-expanded="true">Editar Ordem de Serviço</a>
 						</li>
 
 					<?endif;?>
 
 					<?if (in_array($this->session->userdata()[id_perfil], array(2, 3, 6)) == true and $os_detalhes->status_os != 10): ?>
 						<li role="presentation">
-							<a href="#" id="home-tab" role="tab"  data-url="<?=base_url('os/orcamento/' . $id_os);?>" data-toggle="tab" aria-expanded="true">Enviar Orçamento</a>
+							<a href="#" id="orcamento" role="tab"  data-url="<?=base_url('os/orcamento/' . $id_os);?>" data-toggle="tab" aria-expanded="true">Enviar Orçamento</a>
 						</li>
 					<?endif;?>
 

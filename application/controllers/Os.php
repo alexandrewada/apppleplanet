@@ -703,6 +703,8 @@ class Os extends CI_Controller {
 
     			$OrcamentoExistente = $this->Os_Model->getOrcamentoExistente($this->input->post('id_os'));
 
+                $script = '<script>$("#editar_os").click();</script>';
+
     			if($OrcamentoExistente != false) {
 
     				if($this->db->update("tb_os_orcamento",$dadosOrcamento,"id_os = ".$this->input->post('id_os')) == true) {
@@ -724,7 +726,7 @@ class Os extends CI_Controller {
                         $atualizarDadosOs['defeito_solucao']    = $this->input->post('defeito_solucao');
                         $this->db->update('tb_os',$atualizarDadosOs,array('id_os' => $this->input->post('id_os')));
 
-	                    echo json_encode(array('erro' => false, 'msg' => 'Orçamento atualizado. <script>window.location.href = "'.base_url('os/gerenciar').'";</script>'));
+	                    echo json_encode(array('erro' => false, 'msg' => 'Orçamento atualizado.'.$script));
 
 	    			}
 
@@ -739,7 +741,7 @@ class Os extends CI_Controller {
 		    			$dadosUpdate['id_os_orcamento']			= $id_orcamento;
 
 		    			if($this->Os_Model->update($dadosUpdate,"id_os = ".$this->input->post('id_os')) == true) {
-		    				echo json_encode(array('erro' => false, 'msg' => 'Orçamento novo adicionado. <script>window.location.href = "'.base_url('os/gerenciar').'";</script> '));
+		    				echo json_encode(array('erro' => false, 'msg' => 'Orçamento novo adicionado.'.$script));
 		    			}
 
 	  				    $dadosHistorico = array();
