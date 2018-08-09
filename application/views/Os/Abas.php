@@ -35,7 +35,7 @@
 
 
 					<li role="presentation">
-						<a href="#" id="home-tab" role="tab"  data-url="<?=base_url('os/comment/' . $id_os);?>" data-toggle="tab" aria-expanded="true">Observações Internas</a>
+						<a href="#" id="comment" role="tab"  data-url="<?=base_url('os/comment/' . $id_os);?>" data-toggle="tab" aria-expanded="true">Observações Internas</a>
 					</li>
 
 

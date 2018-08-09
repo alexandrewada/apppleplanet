@@ -33,6 +33,7 @@ class Comment_Model extends CI_Model
         $this->db->from($this->table . ' as c');
         $this->db->join('tb_usuario as u', 'u.id_usuario = c.id_author', 'left');
         $this->db->where(array('c.id_ref' => $id_ref,'c.origem' => $tipo));
+        $this->db->order_by('c.data','DESC');
         
         $query = $this->db->get();
 
@@ -45,7 +46,7 @@ class Comment_Model extends CI_Model
 
     public function Comentar($tipo,$id_author,$id_ref,$texto) {
         $ins = [
-            'tipo'          => $tipo,
+            'origem'        => $tipo,
             'id_author'     => $id_author,
             'id_ref'        => $id_ref,
             'mensagem'      => $texto,
