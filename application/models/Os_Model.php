@@ -51,7 +51,7 @@ class Os_Model extends CI_Model
     }
 
     public function getOrcamentoByIdOSSaida($id_os) {  
-        $query = $this->db->query("SELECT os.status as 'status_os' , os_orcamento.id_os_orcamento, os.nome as 'aparelho', os.id_os, os_orcamento.pecas_usados, os_orcamento.valor FROM tb_os os LEFT JOIN tb_os_orcamento os_orcamento ON os.id_os_orcamento = os_orcamento.id_os_orcamento LEFT JOIN tb_usuario usuario ON usuario.id_usuario = os.id_cliente WHERE os.id_os = $id_os AND os.status in(5,6,7)");
+        $query = $this->db->query("SELECT os.status as 'status_os' , os_orcamento.id_os_orcamento, os.nome as 'aparelho', os.id_os, os_orcamento.pecas_usados, os_orcamento.valor FROM tb_os os LEFT JOIN tb_os_orcamento os_orcamento ON os.id_os_orcamento = os_orcamento.id_os_orcamento LEFT JOIN tb_usuario usuario ON usuario.id_usuario = os.id_cliente WHERE os.id_os = $id_os AND os.status in(5,6,7,13)");
          
         if($query->num_rows() > 0) {
             return $query->row_array();
