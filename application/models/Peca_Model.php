@@ -16,7 +16,7 @@ class Peca_Model extends CI_Model
     }
 
     public function getPecasRetorno($id_os) {
-        $query = $this->db->query("SELECT tb_saida_peca.id_saida_peca, tb_saida_peca.id_peca, tb_peca.nome AS 'nome_peca'FROM tb_saida_peca LEFT JOIN tb_peca ON tb_peca.id_peca = tb_saida_peca.id_peca LEFT JOIN tb_os ON tb_os.id_os_orcamento = tb_saida_peca.id_os_orcamento WHERE tb_os.id_os = ?",$id_os);
+        $query = $this->db->query("SELECT MAX(tb_saida_peca.id_saida_peca) as 'id_saida_peca', tb_saida_peca.id_peca, tb_peca.nome AS 'nome_peca'FROM tb_saida_peca LEFT JOIN tb_peca ON tb_peca.id_peca = tb_saida_peca.id_peca LEFT JOIN tb_os ON tb_os.id_os_orcamento = tb_saida_peca.id_os_orcamento WHERE tb_os.id_os = ?",$id_os);
 
         // $query = $this->db->query("SELECT * FROM appleplanet.tb_saida_peca LEFT JOIN tb_peca ON tb_peca.id_peca = tb_saida_peca.id_peca WHERE id_os_orcamento = ? ",$id_os);
         if($query->num_rows() > 0) {
@@ -27,7 +27,7 @@ class Peca_Model extends CI_Model
     }
 
     public function getBySaida($id_saida) {  
-        $query = $this->db->query("SELECT   MAX(tb_saida_peca.id_saida_peca) as  id_saida_peca,
+        $query = $this->db->query("SELECT  saida_peca.id_saida_peca, 
    peca.nome as 'peca', saida_peca.quantidade as 'Qtd', saida_peca.valor_total, usuario.nome 'Vendedor' ,     DATE_FORMAT(DATE_ADD(saida_peca.data_saida, INTERVAL 3 MONTH),'%d/%m/%Y') as 'validade_garantia' , DATE_FORMAT(saida_peca.data_saida,'%d/%m/%Y') as 'data_venda' FROM appleplanet.tb_saida_peca saida_peca LEFT JOIN tb_peca peca ON peca.id_peca = saida_peca.id_peca LEFT JOIN tb_usuario usuario ON usuario.id_usuario = saida_peca.id_vendedor LEFT JOIN tb_loja loja ON loja.id_loja = saida_peca.id_loja WHERE saida_peca.id_saida_peca = ? AND saida_peca.status = 1",$id_saida);
 
         if($query->num_rows() > 0) {
