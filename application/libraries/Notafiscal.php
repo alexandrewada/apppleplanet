@@ -1,103 +1,49 @@
 <?php
 
-require_once '/var/www/html/nfe/bootstrap.php';
+require_once '/var/www/html/webmania/vendor/autoload.php';
 
-
-use NFePHP\NFe\MakeNFe;
-use NFePHP\NFe\ToolsNFe;
-use NFePHP\Extras\Danfe;
-use NFePHP\Common\Files\FilesFolders;
-
+use WebmaniaBR\NFe;
 
 class Notafiscal
 {
-    //Dados da NFe - infNFe
-    public $cUF = '35'; //codigo numerico do estado
-    public $cNF; //numero aleatório da NF
-    public $natOp  = 'Venda de Produto'; //natureza da operação
-    public $indPag = '2'; //0=Pagamento à vista; 1=Pagamento a prazo; 2=Outros
-    public $mod    = '55'; //modelo da NFe 55 ou 65 essa última NFCe
-    public $serie  = '0'; //serie da NFe
-    public $nNF    ; // numero da NFe
-    public $dhEmi; //Formato: “AAAA-MM-DDThh:mm:ssTZD” (UTC - Universal Coordinated Time).
-    public $tpNF     = '1';
-    public $idDest   = '1'; //1=Operação interna; 2=Operação interestadual; 3=Operação com exterior.
-    public $cMunFG   = '3550308';
-    public $tpImp    = '1'; //0=Sem geração de DANFE; 1=DANFE normal, Retrato; 2=DANFE normal, Paisagem;
-    public $tpEmis   = '1'; //1=Emissão normal (não em contingência);
-    public $tpAmb    = '1'; //1=Produção; 2=Homologação
-    public $finNFe   = '1'; //1=NF-e normal; 2=NF-e complementar; 3=NF-e de ajuste; 4=Devolução/Retorno.
-    public $indFinal = '1'; //0=Normal; 1=Consumidor final;
-    public $indPres  = '1'; //0=Não se aplica (por exemplo, Nota Fiscal complementar ou de ajuste);
-    public $procEmi  = '0'; //0=Emissão de NF-e com aplicativo do contribuinte;
-    public $verProc  = '4.0.43'; //versão do aplicativo emissor
-    public $versao;
-    public $cDV;
-    public $chave;
+    public $pedido = array();
+    public $settings = array();
     public $nfe;
-    public $nfeTools;
-    public $produtos = array();
-    public $resp;
+    public $response;
 
     public function __construct()
     {
 
+        $this->settings = array(
+            'oauth_access_token' => '1174-sl88SZHEX5LMr0QIQgca8w4nTggxPuOiVncxUNZqe2UN0MS8',
+            'oauth_access_token_secret' => '7jaARKIhKYEVn2c65nAHuyZ2tvRxgYBXUE8t1VlsxAe2FSRa',
+            'consumer_key' => 'ly3yK1fQ1rFc3iCcrUi3QhVxOPUGr6qz',
+            'consumer_secret' => 'hqwny0n0fP7mX42zkzz8VbovUzCHyQ3YE1W0GmXySO8XY40j'
+        );
 
+        $this->pedido = [
+            'operacao'               => 1,
+            'natureza_operacao'      => 'Venda de Produtos',
+            'modelo'                 => 1,
+            'finalidade'             => 1,
+            'ambiente'               => 1
+        ];
 
-        $this->nfe      = new MakeNFe();
-        $this->nfeTools = new ToolsNFe('/var/www/html/nfe/config/config.json');
-        $this->cNF      = rand(50000000,10000000);
-        $this->nNF    	= $this->cNF;
-        $this->dhEmi    = date("Y-m-d\TH:i:sP");
-        $ano            = date('y', strtotime($this->dhEmi));
-        $mes            = date('m', strtotime($this->dhEmi));
-        $this->chave    = $this->nfe->montaChave($this->cUF,$ano,$mes,$this->nfeTools->aConfig['cnpj'],$this->mod,$this->serie,$this->nNF, $this->tpEmis, $this->cNF);
-        $this->versao   = '3.10';
-        	
-  		$this->resp     = $this->nfe->taginfNFe($this->chave, $this->versao);
-       	$this->cDV 			= substr($this->chave, -1); 
+        $this->pedido['pedido'] = [
+            'presenca' => 1, // Indicador de presença do comprador no estabelecimento comercial no momento da operação
+            'modalidade_frete' => 0, // Modalidade do frete
+            'frete' => 0.00, // Total do frete
+            'desconto' => 0.00, // Total do desconto
+        ];
 
-
-       	$this->resp 	= $this->nfe->tagide($this->cUF, $this->cNF, $this->natOp, $this->indPag, $this->mod, $this->serie, $this->nNF, $this->dhEmi, $this->dhSaiEnt, $this->tpNF, $this->idDest, $this->cMunFG, $this->tpImp, $this->tpEmis, $this->cDV, $this->tpAmb, $this->finNFe, $this->indFinal, $this->indPres, $this->procEmi, $this->verProc, $this->dhCont, $this->xJust);
-
-        // Dados da razão social
-        $CNPJ       = $this->nfeTools->aConfig['cnpj'];
-        $CPF        = ''; // Utilizado para CPF na nota
-        $xNome      = $this->nfeTools->aConfig['razaosocial'];
-        $xFant      = $this->nfeTools->aConfig['nomefantasia'];
-        $IE         = '140890620118';
-        $IEST       = $this->nfeTools->aConfig['iest'];
-        $IM         = $this->nfeTools->aConfig['im'];
-        $CNAE       = $this->nfeTools->aConfig['cnae'];
-        $CRT        = $this->nfeTools->aConfig['regime'];
-        $this->resp = $this->nfe->tagemit($CNPJ, $CPF, $xNome, $xFant, $IE, $IEST, $IM, $CNAE, $CRT);
-
-
-
-
-
-        //endereço do emitente
-        $xLgr       = 'Rua Clodomiro Amazonas';
-        $nro        = '1158';
-        $xCpl       = 'Loja 3';
-        $xBairro    = 'Itaim Bibi';
-        $cMun       = '3550308';
-        $xMun       = 'São Paulo';
-        $UF         = 'SP';
-        $CEP        = '04537002';
-        $cPais      = '1058';
-        $xPais      = 'Brasil';
-        $fone       = '1135822084';
-        $this->resp = $this->nfe->tagenderEmit($xLgr, $nro, $xCpl, $xBairro, $cMun, $xMun, $UF, $CEP, $cPais, $xPais, $fone);
-
-
-
+        $this->nfe = new NFe($this->settings);
 
     }
 
-    public function cancelarNota($chave,$nProt,$just){
+    public function cancelarNota($chave, $nProt, $just)
+    {
         $retorno = array();
-        $this->nfeTools->sefazCancela($chave,$this->tpAmb, $just, $nProt, $retorno);
+        $this->nfeTools->sefazCancela($chave, $this->tpAmb, $just, $nProt, $retorno);
         return $retorno;
     }
 
@@ -105,219 +51,92 @@ class Notafiscal
     {
 
 
-        if(!empty($dados['ie'])){
-            $indIEDest = '9';
-        } else {
-            $indIEDest = '2';    
-        }
+        $this->pedido['cliente'] = [
+            'cpf' => $dados['cpf'], // (pessoa fisica) Número do CPF
+            'cnpj' => $dados['cnpj'], // (pessoa fisica) Número do CPF
+            'ie' => $dados['ie'], // (pessoa fisica) Número do CPF
+            'nome_completo' => $dados['nome'], // (pessoa fisica) Nome completo
+            'endereco' => $dados['endereco_rua'], // Endereço de entrega dos produtos
+            'complemento' => $dados['complemento'], // Complemento do endereço de entrega
+            'numero' => $dados['endereco_numero'], // Número do endereço de entrega
+            'bairro' => $dados['bairro'], // Bairro do endereço de entrega
+            'cidade' => $dados['cidade'], // Cidade do endereço de entrega
+            'uf' => $dados['uf'], // Estado do endereço de entrega
+            'cep' => $dados['cep'], // CEP do endereço de entrega
+            'telefone' => $dados['telefone'], // Telefone do cliente
+            'email' => $dados['email'], // E-mail do cliente para envio da NF-e
+        ];
 
-        //destinatário
-        $CNPJ = $dados['cnpj'];
-        $CPF  = $dados['cpf'];
-
-        // $idEstrangeiro  = '';
-        $xNome     = $dados['nome'];
-        $IE        = $dados['ie'];
-        $ISUF      = '';
-        $IM        = '4128095';
-        $email     = $dados['email'];
-        $this->resp      = $this->nfe->tagdest($CNPJ, $CPF, $idEstrangeiro, $xNome, $indIEDest, $IE, $ISUF, $IM, $email);
-
-        //Endereço do destinatário
-        $xLgr    = $dados['endereco_rua'];
-        $nro     = $dados['endereco_numero'];
-        $xCpl    = '';
-        $xBairro = $dados['bairro'];
-        $cMun    = $dados['codigo_municipio'];
-        $xMun    = $dados['municipio'];
-        $UF      = $dados['uf'];
-        $CEP     = $dados['cep'];
-        $cPais   = $dados['codigo_pais'];
-        $xPais   = $dados['pais'];
-        $fone    = $dados['telefone'];
-
-        $this->resp = $this->nfe->tagenderDest($xLgr, $nro, $xCpl, $xBairro, $cMun, $xMun, $UF, $CEP, $cPais, $xPais, $fone);
     }
 
-    public function addProduto($produtos=array())
+    public function addProduto($produtos = array())
     {
-
-        $valorTotal         = 0;
-        $valorICMSTotal     = 0;
-        
         foreach ($produtos as $key => $prod) {
-            $precoValor     =  $prod['preco_produto']; 
-            $valorTotal     =  $valorTotal + $prod['unidade_produto']*$precoValor;
+            $this->pedido['produtos'][] = array(
+                'nome' => $prod['nome_produto'], // Nome do produto
+                'origem' => 0,
+                'ncm' => (empty($prod['ncm_produto'])) ? '85176262' : $prod['ncm_produto'], // Código NCM
+                'quantidade' => $prod['unidade_produto'], // Quantidade de itens
+                'unidade' => 'UN', // Unidade de medida da quantidade de itens
+                'peso' => 'sem informações',
+                'tributos_federais' => "13.25",
+                'tributos_estaduais' => "5.00",
+                'subtotal' => number_format($prod['preco_produto'], 4, '.', ''), // Preço unitário do produto - sem descontos
+                'total' => number_format($prod['unidade_produto'] * $prod['preco_produto'], 2, '.', ''), // Preço total (quantidade x preço unitário) - sem descontos
+                'impostos' => array(
+                    'icms' => [
+                        'codigo_cfop'           => '5.102',
+                        'situacao_tributaria'   => '102'
+                    ],
+                    'ipi'  => [
+                        'situacao_tributaria'   => '99',
+                        'codigo_enquadramento'  => 999,
+                        'aliquota'              => '0.00'
+                    ],
+                    'pis'  =>  [
+                        'situacao_tributaria'   => '99',
+                        'aliquota'              => '0.00'
+                    ],
+                    'cofins' => [
+                        'situacao_tributaria'   => '99',
+                        'aliquota'              => '0.00'
+                    ]
+                )
+            );
         }
 
-        $valorTotal 		=  number_format($valorTotal,2, '.','');
-        $valorICMS          =  (18*$valorTotal)/100;
-        $valorICMS 			=  number_format($valorICMS,2,'.','');
-
-
-        foreach ($produtos as $key => $prod) {
-
-
-        	$valorPorItem = number_format($prod['unidade_produto']*$prod['preco_produto'],2, '.', '');
-
-            $nItem      = $key+1;
-            $cProd      = $prod['id_produto'];
-            $cEAN       = '';
-            $xProd      = $prod['nome_produto'];
-            $NCM        = (empty($prod['ncm_produto'])) ? '85176262' : $prod['ncm_produto'];
-            $EXTIPI     = $prod['EXTIPI'];
-            $CFOP       = '5101';
-            $uCom       = 'UN';
-            $qCom       = number_format($prod['unidade_produto'],4,'.','');
-            $vUnCom     = number_format($prod['preco_produto'],2,'.','');
-            $vProd      = $valorPorItem;//$prod['unidade_produto']*$prod['preco_produto'];
-            $cEANTrib   = $prod['cEANTrib'];
-            $uTrib      = 'UN';
-            $qTrib      = $vProd/$prod['unidade_produto'];
-            $vUnTrib    = $vProd/$qTrib;
-            $vFrete     = $prod['vFrete'];
-            $vSeg       = $prod['vSeg'];
-            $vDesc      = $prod['vDesc'];
-            $vOutro     = $prod['vOutro'];
-            $indTot     = 1;
-            $xPed       = $key+1;
-            $nItemPed   = $key+1;
-            $nFCI       = $prod['nFCI'];
-
-            // $valorICMSItem  = $vProd;
-            // $valorICMSTotal = $valorICMSTotal + $valorICMSItem;
-
-            $this->resp = $this->nfe->tagprod($nItem, $cProd, $cEAN, $xProd, $NCM, $EXTIPI, $CFOP, $uCom, $qCom, $vUnCom, $vProd, $cEANTrib, $uTrib, $qTrib, $vUnTrib, $vFrete, $vSeg, $vDesc, $vOutro, $indTot, $xPed, $nItemPed, $nFCI);
-
-
-            //Impostos
-            $vTotTrib           = ''; // 226.80 ICMS + 51.50 ICMSST + 50.40 IPI + 39.36 PIS + 81.84 CONFIS
-       	    $this->resp         = $this->nfe->tagimposto($nItem, $vTotTrib);
-       
-            $this->resp = $this->nfe->tagICMSSN(
-            $nItem,
-            $orig           = 0,
-            $csosn          = '102',
-            $modBC          = '',
-            $vBC            = $vProd,
-            $pRedBC         = '',
-            $pICMS          = '',
-            $vICMS          = '',
-            $pCredSN        = 0,
-            $vCredICMSSN    = 0,
-            $modBCST        = '',
-            $pMVAST         = '',
-            $pRedBCST       = '',
-            $vBCST          = '',
-            $pICMSST        = '',
-            $vICMSST        = '',
-            $vBCSTRet       = '',
-            $vICMSSTRet     = ''
-            );
-
-
-        
-            $this->resp         = $this->nfe->tagPIS($nItem, "99", "0.00", "0.00", "0.00", "", "");
-            $this->resp         = $this->nfe->tagCOFINS($nItem, "99", "0.00", "0.00", "0.00", "", "");
-            $modFrete           = '9'; //0=Por conta do emitente; 1=Por conta do destinatário/remetente; 2=Por conta de terceiros; 9=Sem Frete;
-            $this->resp         = $this->nfe->tagtransp($modFrete);
-
-           }
-
-
-
-            //total
-            $vBC        = '0.00';
-            $vICMS      = '0.00';
-            $vICMSDeson = '0.00';
-            $vBCST      = '0.00';
-            $vST        = '0.00';
-            $vProd      = $valorTotal;
-            $vFrete     = '0.00';
-            $vSeg       = '0.00';
-            $vDesc      = '0.00';
-            $vII        = '0.00';
-            $vIPI       = '0.00';
-            $vPIS       = '0.00';
-            $vCOFINS    = '0.00';
-            $vOutro     = '0.00';
-            $vNF        = number_format($vProd - $vDesc - $vICMSDeson + $vST + $vFrete + $vSeg + $vOutro + $vII + $vIPI, 2, '.', '');
-            $vTotTrib   = number_format($vICMS + $vST + $vII + $vIPI + $vPIS + $vCOFINS + $vIOF + $vISS, 2, '.', '');
-            $this->resp = $this->nfe->tagICMSTot($vBC, $vICMS, $vICMSDeson, $vBCST, $vST, $vProd, $vFrete, $vSeg, $vDesc, $vII, $vIPI, $vPIS, $vCOFINS, $vOutro, $vNF, $vTotTrib);
-            
-
-
-    }
-
-    public function salvarNotaPdf() {
-		$chave = $this->chave;
-		$xmlProt = "/var/www/html/nfe/producao/enviadas/aprovadas/{$this->chave}-nfe.xml";
-		$xmlProt = "/var/www/html/nfe/producao/enviadas/aprovadas/".date('Ym')."/{$this->chave}-protNFe.xml";
-		// Uso da nomeclatura '-danfe.pdf' para facilitar a diferenciação entre PDFs DANFE e DANFCE salvos na mesma pasta...
-		$pdfDanfe = "/var/www/html/public/pdf/nfe/{$this->chave}-danfe.pdf";
-
-		$docxml = FilesFolders::readFile($xmlProt);
-		$danfe = new Danfe($docxml, 'P', 'A4', $this->nfeTools->aConfig['aDocFormat']->pathLogoFile, 'I', '');
-		$id = $danfe->montaDANFE();
-		$salva = $danfe->printDANFE($pdfDanfe, 'F'); //Salva o PDF na pasta
-		return 'http://sistema.appleplanet.com.br/public/pdf/nfe/'.$this->chave.'-danfe.pdf';
     }
 
     public function gerarNF()
     {
-        //monta a NFe e retorna na tela
-        $this->resp = $this->nfe->montaNFe();
 
-        if ($this->resp) {
-            $xmlEntrada  = $this->nfe->getXML();
-            $xmlAssinada = $this->nfeTools->assina($xmlEntrada);
-            $this->nfeTools->setModelo($this->mod);
+   
+        $this->response = $this->nfe->emissaoNotaFiscal($this->pedido);
 
-            $xmlEntradaDir         = "/var/www/html/nfe/producao/entradas/{$this->chave}-nfe.xml"; // Ambiente Linux
-            file_put_contents($xmlEntradaDir, $xmlEntrada);
 
-            $xmlAssinadaEntradaDir         = "/var/www/html/nfe/producao/assinadas/{$this->chave}-nfe.xml"; // Ambiente Linux
-            file_put_contents($xmlAssinadaEntradaDir, $xmlAssinada);
+        if (isset($this->response->error)) {
+            return array('erro' => true, 'msg' => 'Não foi possivel gerar.' . print_r($this->response->error, true));
+        } else {
+            if ($this->response->status == 'aprovado') {
 
-            if (!$this->nfeTools->validarXml($xmlAssinada) || sizeof($this->nfeTools->errors)) {
-                foreach ($this->nfeTools->errors as $erro) {
-                    if (is_array($erro)) {
-                        return array('erro' => true, 'msg' => implode("<br>",$erro));
-                    } else {
-                        return array('erro' => true, 'msg' => implode("<br>",$erro));
-                    }
-                }
+                $status = (string) $this->response->status; // aprovado, reprovado, cancelado, processamento ou contingencia
+                $nfe = (int) $this->response->nfe; // número da NF-e
+                $serie = (int) $this->response->serie; // número de série
+                $recibo = (int) $this->response->recibo; // número do recibo
+                $chave = $this->response->chave; // número da chave de acesso
+                $xml = (string) $this->response->xml; // URL do XML
+                $danfe = (string) $this->response->danfe; // URL do Danfe (PDF)
+                $log = $this->response->log;
+
+                $dirPdf = "/var/www/html/public/pdf/nfe/{$chave}-danfe.pdf";
+                file_put_contents($danfe, $dirPdf);
+
+                $retornoConsulta['urlPdf'] = $danfe;
+                return array('erro' => false, 'msg' => $retornoConsulta);
             } else {
-               
-                $aResposta 		 = array();
-                $idLote    		 = '';
-                $indSinc   		 = '0';
-                $flagZip   		 = false;
-                $this->retorno   = $this->nfeTools->sefazEnviaLote($xmlAssinada, $this->tpAmb, $idLote, $aResposta, $indSinc, $flagZip);
-        
-                sleep(5);
-           		
-                $this->nfeTools->sefazConsultaRecibo($aResposta[nRec],$this->tpAmb,$retornoConsulta);
-
-                if($retornoConsulta[aProt][0][cStat] == '100') {    
-                    $xmlAprovadasDir         = "/var/www/html/nfe/producao/enviadas/aprovadas/{$this->chave}-nfe.xml"; 
-                    file_put_contents($xmlAprovadasDir, $xmlAssinada);
-
-
-                    $protAssinada = "/var/www/html/nfe/producao/enviadas/aprovadas/{$this->chave}-nfe.xml";
-                    $protTemp 	  = "/var/www/html/nfe/producao/temporarias/".date('Ym')."/".$aResposta[nRec]."-retConsReciNFe.xml";
-
-                    $this->nfeTools->addProtocolo($protAssinada,$protTemp,true);
-
-                    $retornoConsulta['urlPdf'] = $this->salvarNotaPdf();
-                    return array('erro' => false, 'msg' => $retornoConsulta);
-                } else {
-                    return array('erro' => true,  'msg' => 'Não foi possivel gerar.'.print_r($retornoConsulta,true));
-                }
+                return array('erro' => true, 'msg' => 'Não foi possivel gerar.' . print_r($this->response->log, true));
 
             }
         }
-
     }
 }
-
