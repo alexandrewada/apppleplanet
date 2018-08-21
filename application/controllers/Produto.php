@@ -245,10 +245,11 @@ class Produto extends CI_Controller {
 	                                    'nome'              => removerAcento(trim($dadosCliente->nome)),
 	                                    'cpf'               => preg_replace("/[^0-9]/", "", trim($dadosCliente->cpf)),
 	                                    'endereco_rua'      => removerAcento(trim($dadosCliente->rua)),
+	                                    'cep'               => removerAcento(trim($dadosCliente->cep)),
 	                                    'endereco_numero'   => removerAcento(trim($dadosCliente->rua_numero)),
 	                                    'bairro'            => removerAcento(trim($dadosCliente->bairro)),
 	                                    'codigo_municipio'  => '3550308',
-	                                    'municipio'         => removerAcento(trim($dadosCliente->cidade)),
+	                                    'cidade'            => removerAcento(trim($dadosCliente->cidade)),
 	                                    'uf'                => strtoupper(removerAcento(trim($dadosCliente->uf)))
 	                                ));
                                 } else {
@@ -260,7 +261,7 @@ class Produto extends CI_Controller {
 	                                    'endereco_numero'   => removerAcento(trim($dadosCliente->rua_numero)),
 	                                    'bairro'            => removerAcento(trim($dadosCliente->bairro)),
 	                                    'codigo_municipio'  => '3550308',
-	                                    'municipio'         => removerAcento(trim($dadosCliente->cidade)),
+	                                    'cidade'         => removerAcento(trim($dadosCliente->cidade)),
 	                                    'uf'                => strtoupper(removerAcento(trim($dadosCliente->uf)))
 	                                ));
                                 }
