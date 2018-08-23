@@ -56,6 +56,7 @@ class Notafiscal
             'cnpj' => $dados['cnpj'], // (pessoa fisica) Número do CPF
             'ie' => $dados['ie'], // (pessoa fisica) Número do CPF
             'nome_completo' => $dados['nome'], // (pessoa fisica) Nome completo
+            'razao_social' => $dados['nome'], // (pessoa fisica) Nome completo
             'endereco' => $dados['endereco_rua'], // Endereço de entrega dos produtos
             'complemento' => $dados['complemento'], // Complemento do endereço de entrega
             'numero' => $dados['endereco_numero'], // Número do endereço de entrega
