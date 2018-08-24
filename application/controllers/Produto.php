@@ -260,7 +260,8 @@ class Produto extends CI_Controller {
 	                                    'endereco_rua'      => removerAcento(trim($dadosCliente->rua)),
 	                                    'endereco_numero'   => removerAcento(trim($dadosCliente->rua_numero)),
 	                                    'bairro'            => removerAcento(trim($dadosCliente->bairro)),
-	                                    'codigo_municipio'  => '3550308',
+                                        'codigo_municipio'  => '3550308',
+                                        'cep'               => removerAcento(trim($dadosCliente->cep)),
 	                                    'cidade'         => removerAcento(trim($dadosCliente->cidade)),
 	                                    'uf'                => strtoupper(removerAcento(trim($dadosCliente->uf)))
 	                                ));
