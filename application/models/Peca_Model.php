@@ -17,7 +17,7 @@ class Peca_Model extends CI_Model
     }
 
     public function getPecasRetorno($id_os) {
-        $query = $this->db->query("SELECT MAX(tb_saida_peca.id_saida_peca) as 'id_saida_peca', tb_saida_peca.id_peca, tb_peca.nome AS 'nome_peca'FROM tb_saida_peca LEFT JOIN tb_peca ON tb_peca.id_peca = tb_saida_peca.id_peca LEFT JOIN tb_os ON tb_os.id_os_orcamento = tb_saida_peca.id_os_orcamento WHERE tb_os.id_os = ? AND tb_os.id_loja = ? ",$id_os,$_SESSION['id_loja']);
+        $query = $this->db->query("SELECT MAX(tb_saida_peca.id_saida_peca) as 'id_saida_peca', tb_saida_peca.id_peca, tb_peca.nome AS 'nome_peca'FROM tb_saida_peca LEFT JOIN tb_peca ON tb_peca.id_peca = tb_saida_peca.id_peca LEFT JOIN tb_os ON tb_os.id_os_orcamento = tb_saida_peca.id_os_orcamento  WHERE tb_os.id_os = ? AND tb_os.id_loja = ? ",array($id_os,$_SESSION['id_loja']));
 
         // $query = $this->db->query("SELECT * FROM appleplanet.tb_saida_peca LEFT JOIN tb_peca ON tb_peca.id_peca = tb_saida_peca.id_peca WHERE id_os_orcamento = ? ",$id_os);
         if($query->num_rows() > 0) {
