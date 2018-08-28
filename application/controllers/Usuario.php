@@ -164,10 +164,10 @@ class Usuario extends CI_Controller {
 					$this->form_validation->set_rules('cnpj', 'CNPJ', 'required|exact_length[18]');
 					// $this->form_validation->set_rules('ie', 'IE', 'required');
 			
-					if($this->Usuario_Model->getByCNPJ($this->input->post('cnpj')) != false) {
-						echo json_encode(array('erro' => true, 'msg' => 'O CNPJ '. $this->input->post('cnpj') . ' já existe em nosso banco de dados.'));
-						exit;
-					}
+					// if($this->Usuario_Model->getByCNPJ($this->input->post('cnpj')) != false) {
+					// 	echo json_encode(array('erro' => true, 'msg' => 'O CNPJ '. $this->input->post('cnpj') . ' já existe em nosso banco de dados.'));
+					// 	exit;
+					// }
 				}
 
 				if($this->input->post('tipo_usuario') == 'pf'){
@@ -179,22 +179,22 @@ class Usuario extends CI_Controller {
 
 				$this->form_validation->set_error_delimiters();
 
-				if($this->Usuario_Model->UsuarioExiste($this->input->post('email')) != false) {
-					echo json_encode(array('erro' => true, 'msg' => 'O email '. $this->input->post('email') . ' já existe em nosso banco de dados.'));
-					exit;
-				}
+				// if($this->Usuario_Model->UsuarioExiste($this->input->post('email')) != false) {
+				// 	echo json_encode(array('erro' => true, 'msg' => 'O email '. $this->input->post('email') . ' já existe em nosso banco de dados.'));
+				// 	exit;
+				// }
 
 				if($this->input->post('perfil') == 2 AND $_SESSION['id_perfil'] != 2){
 					echo json_encode(array('erro' => true, 'msg' => 'Você não tem permissão para criar um usuário admin.'));
 					exit;
 				}
 
-				if($this->input->post('tipo_usuario') == 'pf'){
-					if($this->Usuario_Model->getByCPF($this->input->post('cpf')) != false) {
-						echo json_encode(array('erro' => true, 'msg' => 'O CPF '. $this->input->post('cpf') . ' já existe em nosso banco de dados.'));
-						exit;
-					}
-				}
+				// if($this->input->post('tipo_usuario') == 'pf'){
+				// 	if($this->Usuario_Model->getByCPF($this->input->post('cpf')) != false) {
+				// 		echo json_encode(array('erro' => true, 'msg' => 'O CPF '. $this->input->post('cpf') . ' já existe em nosso banco de dados.'));
+				// 		exit;
+				// 	}
+				// }
 
 				if(valid_email($this->input->post('email')) != true) {
 					echo json_encode(array('erro' => true, 'msg' => 'O email '. $this->input->post('email') . ' está errado.'));
