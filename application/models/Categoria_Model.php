@@ -7,7 +7,8 @@ class Categoria_Model extends CI_Model
 
 
     public function getAll() {
-    	$this->db->order_by('nome','ASC');
+        $this->db->order_by('nome','ASC');
+        $this->db->where('id_loja',$_SESSION['id_loja']);
     	$query = $this->db->get($this->table);
 
     	if($query->num_rows() > 0) {
@@ -19,7 +20,7 @@ class Categoria_Model extends CI_Model
     }
 
      public function getByID($id) {  
-        $query = $this->db->get_where($this->table, array('id_categoria' => $id));
+        $query = $this->db->get_where($this->table, array('id_loja' => $_SESSION['id_loja'], 'id_categoria' => $id));
         if($query->num_rows() > 0) {
             return $query->row();
         } else {

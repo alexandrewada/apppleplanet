@@ -125,7 +125,7 @@
                           <select  name='perfil'  class="form-control col-md-7 col-xs-12">
 
                             <?foreach ($perfil as $key => $v):?>
-                              <?if(in_array($this->session->userdata()[id_perfil],array(2,3)) == true AND in_array($v->id_perfil,array(2,3,4,5,6)) == ture):?>
+                              <?if(in_array($this->session->userdata()[id_perfil],array(2,3,8,9)) == true AND in_array($v->id_perfil,array(2,3,4,5,6,8,9,10,11,12)) == true):?>
                              <option <?=($usuario->id_perfil == $v->id_perfil) ? 'selected' : '';?> value='<?=$v->id_perfil;?>'><?=$v->nome;?></option>
                               <?elseif(in_array($v->id_perfil,array(1)) == true):?>
                              <option <?=($usuario->id_perfil == $v->id_perfil) ? 'selected' : '';?> value='<?=$v->id_perfil;?>'><?=$v->nome;?></option>

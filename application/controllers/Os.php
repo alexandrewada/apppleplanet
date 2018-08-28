@@ -132,7 +132,7 @@ class Os extends CI_Controller {
 		                    $insertSaida['id_os']                             	=      $os[id_os];
 		                    $insertSaida['id_os_orcamento']						= 	   $os[id_os_orcamento];
 		                    $insertSaida['id_nfe']                              =      $id_nfe;
-		                	$insertSaida['id_loja']                             =      $this->session->userdata()['id_loja'];
+		                	$insertSaida['id_loja']                             =      $_SESSION['id_loja'];
 		                    $insertSaida['quantidade']                          =      $os[quantidade];
 		                    $insertSaida['valor_orcamento_total']               =      $os[valor];
 		                    $insertSaida['status']                              =      3;
@@ -368,7 +368,7 @@ class Os extends CI_Controller {
                     $insertSaida['parcela']                             =      $this->input->post('numero_parcelas');
                     $insertSaida['desconto']                            =      $this->input->post('desconto');
                     $insertSaida['valor_desconto']                      =      ($this->input->post('desconto') != '0') ? ($os[valor]*$this->input->post('desconto'))/100 : 0;
-                    $insertSaida['id_loja']                             =      $this->session->userdata()['id_loja'];
+                    $insertSaida['id_loja']                             =      $_SESSION['id_loja'];
                     $insertSaida['quantidade']                          =      $os[quantidade];
                     $insertSaida['valor_orcamento_total']               =      $os[valor];
                     $insertSaida['valor_orcamento_lucro']               =      $ValorLucroTotal;
@@ -612,7 +612,7 @@ class Os extends CI_Controller {
 	            		$insertSaida = array();
 	    				$insertSaida['id_vendedor']			                =	   $this->session->userdata()['id_usuario'];
 	    				$insertSaida['id_peca'] 			                = 	   $id_peca;
-	                    $insertSaida['id_loja'] 			                =      $this->session->userdata()['id_loja'];
+	                    $insertSaida['id_loja'] 			                =      $_SESSION['id_loja'];
 	    				$insertSaida['quantidade'] 			                =      $qtd_peca;
 	    				$insertSaida['valor_unitario'] 		                =      $pecaBd->preco_venda;
 	    	            $insertSaida['status']                              =      1;
@@ -687,7 +687,7 @@ class Os extends CI_Controller {
 
     			$dadosOrcamento = array();
     			$dadosOrcamento['id_os']				= $this->input->post('id_os');
-                $dadosOrcamento['id_loja']              = $this->session->userdata()['id_loja'];
+                $dadosOrcamento['id_loja']              = $_SESSION['id_loja'];
                 $dadosOrcamento['id_usuario']           = $this->session->userdata()['id_usuario'];
     			$dadosOrcamento['valor']				= $this->input->post('valor_total');
     			$dadosOrcamento['pecas_usados']			= $this->input->post('pecas_usados');
@@ -712,7 +712,7 @@ class Os extends CI_Controller {
 	  				    $dadosHistorico = array();
 	                    $dadosHistorico['id_os'] 				 = $this->input->post('id_os');
                         $dadosHistorico['id_usuarioEditou']		 = $this->session->userdata()['id_usuario'];
-                        $dadosHistorico['id_loja']               = $this->session->userdata()['id_loja'];
+                        $dadosHistorico['id_loja']               = $_SESSION['id_loja'];
 	                    $dadosHistorico['status']				 = 4;
 	                    $dadosHistorico['data']				 	 = date('Y-m-d H:i:s');
 	                    $dadosHistorico['observacao']        	 = 'Um novo orçamento foi enviado, aguardando a aprovação do cliente.';
@@ -747,7 +747,7 @@ class Os extends CI_Controller {
 	  				    $dadosHistorico = array();
 	                    $dadosHistorico['id_os'] 				 = $this->input->post('id_os');
 	                    $dadosHistorico['id_usuarioEditou']		 = $this->session->userdata()['id_usuario'];
-                        $dadosHistorico['id_loja']               = $this->session->userdata()['id_loja'];
+                        $dadosHistorico['id_loja']               = $_SESSION['id_loja'];
 	                    $dadosHistorico['status']				 = 4;
 	                    $dadosHistorico['data']				 	 = date('Y-m-d H:i:s');
 	                    $dadosHistorico['observacao']        	 = 'Um orçamento foi criado, aguardando a aprovação do cliente.';
@@ -831,7 +831,7 @@ class Os extends CI_Controller {
                         $dadosHistorico = array();
                         $dadosHistorico['id_os'] 				 = $id_os;
                         $dadosHistorico['id_usuarioEditou']		 = $this->session->userdata()['id_usuario'];
-                        $dadosHistorico['id_loja']		 		 = $this->session->userdata()['id_loja'];
+                        $dadosHistorico['id_loja']		 		 = $_SESSION['id_loja'];
                         $dadosHistorico['status']				 = $this->input->post('status');
                         $dadosHistorico['data']				 	 = date('Y-m-d H:i:s');
                         $dadosHistorico['observacao']        	 = $this->input->post('observacao_status');
@@ -921,7 +921,7 @@ public function Cadastrar($id_usuario)
                     $dados['id_categoria']              = $this->input->post('id_categoria');
                     $dados['id_cliente']                = $this->input->post('id_usuario');
                     $dados['garantia_apple']            = $this->input->post('garantia_apple');
-                    $dados['id_loja']                   = $this->session->userdata()['id_loja'];
+                    $dados['id_loja']                   = $_SESSION['id_loja'];
                     $dados['id_criador']                = $this->session->userdata()['id_usuario'];
                     $dados['nome']                      = ucwords($this->input->post('nome'));
                     $dados['marca']                     = $this->input->post('marca');
@@ -1028,7 +1028,7 @@ public function Cadastrar($id_usuario)
  //                	$dados = array();
  //                    $dados['id_categoria']              = $this->input->post('id_categoria');
  //                    $dados['id_cliente']				= $DadosCliente->id_usuario;
- //                    $dados['id_loja']             		= $this->session->userdata()['id_loja'];
+ //                    $dados['id_loja']             		= $_SESSION['id_loja'];
  //                    $dados['id_criador']                = $this->session->userdata()['id_usuario'];
  //                    $dados['nome']                      = ucwords($this->input->post('nome'));
  //                    $dados['marca']                     = $this->input->post('marca');

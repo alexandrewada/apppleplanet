@@ -7,7 +7,8 @@ class Comment_Model extends CI_Model
 
 
     public function getAll() {
-    	$this->db->order_by('nome','ASC');
+        $this->db->order_by('nome','ASC');
+        $this->db->where('id_loja',$_SESSION['id_loja']);
     	$query = $this->db->get($this->table);
 
     	if($query->num_rows() > 0) {
@@ -19,7 +20,7 @@ class Comment_Model extends CI_Model
     }
 
      public function getByID($id) {  
-        $query = $this->db->get_where($this->table, array('id_categoria' => $id));
+        $query = $this->db->get_where($this->table, array('id_loja' => $_SESSION['id_loja'], 'id_categoria' => $id));
         if($query->num_rows() > 0) {
             return $query->row();
         } else {
@@ -35,6 +36,8 @@ class Comment_Model extends CI_Model
         $this->db->where(array('c.id_ref' => $id_ref,'c.origem' => $tipo));
         $this->db->order_by('c.data','DESC');
         
+        $this->db->where('c.id_loja',$_SESSION['id_loja']);
+
         $query = $this->db->get();
 
     	if($query->num_rows() > 0) {
@@ -48,6 +51,7 @@ class Comment_Model extends CI_Model
         $ins = [
             'origem'        => $tipo,
             'id_author'     => $id_author,
+            'id_loja'       => $_SESSION['id_loja'],
             'id_ref'        => $id_ref,
             'mensagem'      => $texto,
             'data'          => date('Y-m-d H:i:s')

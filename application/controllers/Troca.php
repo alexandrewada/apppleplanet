@@ -177,7 +177,7 @@ class Troca extends CI_Controller {
                 	$dadosProduto 							   = array();
                     $dadosProduto['id_categoria']              = $this->input->post('id_categoria');
                     $dadosProduto['id_usuario']                = $this->session->userdata()['id_usuario'];
-                    $dadosProduto['id_loja']      	           = $this->session->userdata()['id_loja'];
+                    $dadosProduto['id_loja']      	           = $_SESSION['id_loja'];
                     $dadosProduto['nome']                      = ucwords($this->input->post('nome_produto'));
                     $dadosProduto['marca']                     = $this->input->post('marca_produto');
                     $dadosProduto['estado']                    = $this->input->post('estado');
@@ -230,7 +230,7 @@ class Troca extends CI_Controller {
                     $insertSaida['id_formapagamento']                   =      $this->input->post('forma_pagamento');
                     $insertSaida['parcela']                             =      $this->input->post('numero_parcelas');
                     $insertSaida['desconto']                            =      $this->input->post('desconto');
-                  	$insertSaida['id_loja'] 			                =      $this->session->userdata()['id_loja'];
+                  	$insertSaida['id_loja'] 			                =      $_SESSION['id_loja'];
     				$insertSaida['quantidade'] 			                =      1;
     				$insertSaida['valor_unitario'] 		                =      $dadosProdutoTroca->preco_troca;
     	            $insertSaida['status']                              =      $status_saida;

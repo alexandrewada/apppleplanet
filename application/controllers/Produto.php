@@ -37,7 +37,7 @@ class Produto extends CI_Controller {
                 $this->db->update('tb_saida_produto',array('status' => 2),array('id_saida_produto' => $dadosSaidaProduto['id_saida_produto']));
 			    
 			    $dadosInsert = array(
-			    				'id_loja' 				=> $this->session->userdata()['id_loja'],
+			    				'id_loja' 				=> $_SESSION['id_loja'],
 			    				'id_saida_produto'		=> $dadosSaidaProduto['id_saida_produto'],
 			    				'id_usuario_efetuou'	=> $this->session->userdata()['id_usuario'],
 			    				'motivo'				=> $this->input->post('motivo_retorno'),
@@ -390,7 +390,7 @@ class Produto extends CI_Controller {
                     $insertSaida['parcela']                             =      $this->input->post('numero_parcelas');
                     $insertSaida['desconto']                            =      $this->input->post('desconto');
                     $insertSaida['valor_desconto']                      =      ($this->input->post('desconto') != '0') ? ($produtoBd->preco_venda*$this->input->post('desconto'))/100 : 0;
-                	$insertSaida['id_loja'] 			                =      $this->session->userdata()['id_loja'];
+                	$insertSaida['id_loja'] 			                =      $_SESSION['id_loja'];
     				$insertSaida['quantidade'] 			                =      $produtoCli->quantidade;
     				$insertSaida['valor_unitario'] 		                =      $produtoBd->preco_venda;
     	            $insertSaida['status']                              =      $status_saida;
@@ -619,7 +619,7 @@ class Produto extends CI_Controller {
                     $dados['id_categoria']              = $this->input->post('id_categoria');
                     $dados['id_fornecedor']             = $this->input->post('id_fornecedor');
                     $dados['id_usuario']                = $this->session->userdata()['id_usuario'];
-                    $dados['id_loja']                	= $this->session->userdata()['id_loja'];
+                    $dados['id_loja']                	= $_SESSION['id_loja'];
                     $dados['nome']                      = ucwords($this->input->post('nome_produto'));
                     $dados['marca']                     = $this->input->post('marca_produto');
                     $dados['estado']                    = $this->input->post('estado');

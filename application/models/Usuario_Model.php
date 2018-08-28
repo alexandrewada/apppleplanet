@@ -6,7 +6,7 @@ class Usuario_Model extends CI_Model
     private $table = 'tb_usuario';
 
     public function UsuarioExiste($email) {
-   		$query = $this->db->get_where($this->table, array('email' => $email));
+   		$query = $this->db->get_where($this->table, array('id_loja' => $_SESSION['id_loja'], 'email' => $email));
    		if($query->num_rows() > 0) {
    			return $query->row();
    		} else {
@@ -34,7 +34,7 @@ class Usuario_Model extends CI_Model
     }
 
     public function getByCPF($cpf) {  
-        $query = $this->db->get_where($this->table, array('cpf' => $cpf, 'status' => 1));
+        $query = $this->db->get_where($this->table, array('id_loja' => $_SESSION['id_loja'], 'cpf' => $cpf, 'status' => 1));
         if($query->num_rows() > 0) {
             return $query->row();
         } else {
@@ -52,7 +52,7 @@ class Usuario_Model extends CI_Model
     }
 
     public function ListarClientes() {
-        $query = $this->db->query("SELECT tb_usuario.*, tb_perfil.nome AS 'perfil', tb_loja.nome AS 'loja'FROM appleplanet.tb_usuario LEFT JOIN tb_perfil ON tb_perfil.id_perfil = tb_usuario.id_perfil LEFT JOIN tb_loja ON tb_loja.id_loja = tb_usuario.id_loja"); 
+        $query = $this->db->query("SELECT tb_usuario.*, tb_perfil.nome AS 'perfil', tb_loja.nome AS 'loja'FROM appleplanet.tb_usuario LEFT JOIN tb_perfil ON tb_perfil.id_perfil = tb_usuario.id_perfil LEFT JOIN tb_loja ON tb_loja.id_loja = tb_usuario.id_loja WHERE tb_loja.id_loja = ?",array($_SESSION['id_loja'])); 
         if($query->num_rows() > 0) {
             return $query->result();
         } else {
@@ -62,7 +62,7 @@ class Usuario_Model extends CI_Model
 
     public function getClientesLoja() {
 
-        $wheres['id_loja']      = $this->session->userdata()['id_loja'];
+        $wheres['id_loja']      = $_SESSION['id_loja'];
         $wheres['id_perfil']    = 1;
         
         $query = $this->db->get_where($this->table, $wheres);

@@ -1,3 +1,4 @@
+
 <html lang="en"><head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta charset="utf-8">
@@ -83,6 +84,17 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
+														<select name='id_loja' class='form-control'>
+															<?foreach ($lojas as $key => $v):?>
+																<option value='<?=$v->id_loja;?>'><?=$v->nome;?></option>
+															<?endforeach;?>
+														</select>
+															<!-- <i class="ace-icon fa fa-user"></i> -->
+														</span>
+													</label>
+
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
 															<input type="text" name='email' class="form-control" placeholder="Email">
 															<!-- <i class="ace-icon fa fa-user"></i> -->
 														</span>
@@ -95,12 +107,13 @@
 														</span>
 													</label>
 
-													<div class='center'><?if(!empty($erro)){echo $erro;};?></div>
+													<div class='center'><?if (!empty($erro)) {echo $erro;}
+;?></div>
 
 													<div class="space"></div>
 
 													<div class="clearfix">
-														
+
 														<!-- <label class="inline">
 															<a href='http://www.ingles200h.com/esqueci-a-senha/'>Esqueceu sua senha?</a>
 														</label>
@@ -111,22 +124,22 @@
 													</div>
 
 													<div class="space-4">
-														
+
 													</div>
 													<div id="erroResult" hidden class='alert alert-danger'>
-														
+
 													</div>
 												</fieldset>
 											</form>
 
-											
+
 
 											<div class="space-6"></div>
 
-											
+
 										</div><!-- /.widget-main -->
 
-										
+
 									</div><!-- /.widget-body -->
 								</div><!-- /.login-box -->
 
@@ -148,11 +161,11 @@
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="email" class="form-control" placeholder="Email">
-												
+
 															<i class="ace-icon fa fa-envelope"></i>
 														</span>
 													</label>
-													
+
 													<div class="clearfix">
 														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
 															<i class="ace-icon fa fa-lightbulb-o"></i>
@@ -249,7 +262,7 @@
 								</div><!-- /.signup-box -->
 							</div><!-- /.position-relative -->
 
-							
+
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
@@ -266,6 +279,6 @@
 </script>
 <![endif]-->
 
-	
+
 
 </body></html>

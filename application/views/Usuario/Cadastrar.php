@@ -154,12 +154,12 @@
                           	<?foreach ($perfil as $key => $v):?>
                               
                               <!-- Perfil ADMIN E GENRETE -->
-                              <?if(in_array($this->session->userdata()[id_perfil],array(2,5)) == true AND in_array($v->id_perfil,array(2,3,4,5,6)) == true):?>
+                              <?if(in_array($this->session->userdata()[id_perfil],array(2,5,11,8)) == true AND in_array($v->id_perfil,array(2,3,4,5,6,8,9,10,11,12)) == true):?>
                       			   
                                  <option value='<?=$v->id_perfil;?>'><?=$v->nome;?></option>
                       	      
 
-                              <?elseif(in_array($v->id_perfil,array(1)) == true):?>
+                              <?elseif(in_array($v->id_perfil,array(1,7)) == true):?>
                       	      
                               	<option value='<?=$v->id_perfil;?>'><?=$v->nome;?></option>
                       	      
@@ -171,7 +171,7 @@
                         </div>
                       </div>
 
-                      <?if(in_array($this->session->userdata()[id_perfil],array(2,3)) == true):?>
+                      <?if(in_array($this->session->userdata()[id_perfil],array(2,3,11,8)) == true):?>
                      
 
 
@@ -195,7 +195,7 @@
 
                      <?else:?>
 
-                     	<input type="text" name="loja_id" value='<?=$this->session->userdata()[id_perfil];?>' hidden>
+                     	<input type="text" name="loja_id" value='<?=$this->session->userdata()[id_loja];?>' hidden>
 
                      <?endif;?>
 

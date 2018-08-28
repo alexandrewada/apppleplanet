@@ -13,7 +13,7 @@
 
 		public function Enviar() {
  			
-			require_once "/var/www/html/includes/phpmailer/PHPMailerAutoload.php";
+			require_once "includes/phpmailer/PHPMailerAutoload.php";
 			
 			$this->mail = new PHPMailer();
 			$this->mail->isSMTP();

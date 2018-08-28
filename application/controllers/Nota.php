@@ -22,7 +22,7 @@ class Nota extends CI_Controller {
 										    tb_saida_produto sp ON nfe.id_nfe = sp.id_nfe
 												LEFT JOIN
 											tb_usuario user ON user.id_usuario = sp.id_vendedor
-										WHERE sp.id_saida_produto is not null ORDER BY nfe.id_nfe");
+										WHERE sp.id_saida_produto is not null AND sp.id_loja = ? ORDER BY nfe.id_nfe",array($_SESSION['id_loja']));
 
 		$view['lista'] = $query->result();
 		$this->template->load('template','Nota/Gerenciar',$view);

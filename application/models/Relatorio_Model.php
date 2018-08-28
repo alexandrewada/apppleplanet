@@ -4,7 +4,7 @@
 class Relatorio_Model extends CI_Model {
 
 	public function getTotalVendasHoje() {
-		$query = $this->db->query("SELECT COUNT(*) as 'TotalVenda' FROM appleplanet.tb_saida_produto WHERE status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT COUNT(*) as 'TotalVenda' FROM appleplanet.tb_saida_produto WHERE id_loja = ".$_SESSION['id_loja']." AND  status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->TotalVenda;
 		} else {
@@ -13,7 +13,7 @@ class Relatorio_Model extends CI_Model {
 	}	
 
 	public function getTotalProdutoBrindeHoje() {
-		$query = $this->db->query("SELECT COUNT(*) as 'Brinde' FROM appleplanet.tb_saida_produto WHERE status = 3 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT COUNT(*) as 'Brinde' FROM appleplanet.tb_saida_produto WHERE id_loja = ".$_SESSION['id_loja']." AND status = 3 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->Brinde;
 		} else {
@@ -22,7 +22,7 @@ class Relatorio_Model extends CI_Model {
 	}
 
 	public function getTotalPecaBrindeHoje() {
-		$query = $this->db->query("SELECT COUNT(*) as 'Brinde' FROM appleplanet.tb_saida_peca WHERE status = 3 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT COUNT(*) as 'Brinde' FROM appleplanet.tb_saida_peca WHERE id_loja = ".$_SESSION['id_loja']." AND status = 3 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->Brinde;
 		} else {
@@ -31,7 +31,7 @@ class Relatorio_Model extends CI_Model {
 	}
 
 	public function getTotalPecaGarantiaHoje() {
-		$query = $this->db->query("SELECT COUNT(*) as 'Garantia' FROM appleplanet.tb_saida_peca WHERE status = 4 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT COUNT(*) as 'Garantia' FROM appleplanet.tb_saida_peca WHERE id_loja = ".$_SESSION['id_loja']." AND status = 4 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->Garantia;
 		} else {
@@ -40,7 +40,7 @@ class Relatorio_Model extends CI_Model {
 	}	
 
 	public function getTotalProdutoGarantiaHoje() {
-		$query = $this->db->query("SELECT COUNT(*) as 'Garantia' FROM appleplanet.tb_saida_produto WHERE status = 4 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT COUNT(*) as 'Garantia' FROM appleplanet.tb_saida_produto WHERE id_loja = ".$_SESSION['id_loja']." AND status = 4 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->Garantia;
 		} else {
@@ -52,7 +52,7 @@ class Relatorio_Model extends CI_Model {
 
 
 	public function getTotalProdutos() {
-		$query = $this->db->query("SELECT COUNT(*) as 'TotalProdutos' FROM appleplanet.tb_produto");
+		$query = $this->db->query("SELECT COUNT(*) as 'TotalProdutos' FROM appleplanet.tb_produto WHERE id_loja = ".$_SESSION['id_loja']);
 		if($query->num_rows() > 0) {
 			return $query->row()->TotalProdutos;
 		} else {
@@ -61,7 +61,7 @@ class Relatorio_Model extends CI_Model {
 	}
 
 	public function getTotalPecas() {
-		$query = $this->db->query("SELECT COUNT(*) as 'TotalPecas' FROM appleplanet.tb_peca");
+		$query = $this->db->query("SELECT COUNT(*) as 'TotalPecas' FROM appleplanet.tb_peca WHERE id_loja = ".$_SESSION['id_loja']);
 		if($query->num_rows() > 0) {
 			return $query->row()->TotalPecas;
 		} else {
@@ -78,7 +78,7 @@ class Relatorio_Model extends CI_Model {
 			$data = '';
 		}
 
-		$query = $this->db->query("SELECT count(*) as 'Total' FROM appleplanet.tb_os WHERE status != 10 $data");
+		$query = $this->db->query("SELECT count(*) as 'Total' FROM appleplanet.tb_os WHERE status != 10 $data AND id_loja = ".$_SESSION['id_loja']);
 		if($query->num_rows() > 0) {
 			return $query->row();
 		} else {
@@ -96,7 +96,7 @@ class Relatorio_Model extends CI_Model {
 			$data = '';
 		}
 
-		$query = $this->db->query("SELECT count(*) as 'Total' ,if(sum(valor_orcamento_total) is null,0.00,sum(valor_orcamento_total)) as 'ValorTotal' FROM appleplanet.tb_saida_os WHERE status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT count(*) as 'Total' ,if(sum(valor_orcamento_total) is null,0.00,sum(valor_orcamento_total)) as 'ValorTotal' FROM appleplanet.tb_saida_os WHERE id_loja = ".$_SESSION['id_loja'] ." AND status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row();
 		} else {
@@ -105,7 +105,7 @@ class Relatorio_Model extends CI_Model {
 	}
 
 	public function getValorTotalVendasHoje() {
-		$query = $this->db->query("SELECT if(sum(valor_total) is null,0.00,sum(valor_total)) as 'ValorTotal' FROM appleplanet.tb_saida_produto WHERE status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT if(sum(valor_total) is null,0.00,sum(valor_total)) as 'ValorTotal' FROM appleplanet.tb_saida_produto WHERE id_loja = ".$_SESSION['id_loja'] ." AND status  = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->ValorTotal;
 		} else {
@@ -114,7 +114,7 @@ class Relatorio_Model extends CI_Model {
 	}
 
 	public function getValorTotalLucroHoje() {
-		$query = $this->db->query("SELECT if(sum(valor_lucro_total) is null,0.00,sum(valor_lucro_total)) as 'ValorTotal' FROM appleplanet.tb_saida_produto WHERE status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
+		$query = $this->db->query("SELECT if(sum(valor_lucro_total) is null,0.00,sum(valor_lucro_total)) as 'ValorTotal' FROM appleplanet.tb_saida_produto WHERE id_loja = ".$_SESSION['id_loja'] ." AND status = 1 AND date_format(data_saida,'%Y-%m-%d') = curdate()");
 		if($query->num_rows() > 0) {
 			return $query->row()->ValorTotal;
 		} else {
@@ -123,7 +123,7 @@ class Relatorio_Model extends CI_Model {
 	}
 
 	public function getTotalClientes() {
-		$query = $this->db->query("SELECT if(COUNT(*) is null,0,COUNT(*)) as TotalClientes FROM appleplanet.tb_usuario where id_perfil = 1");
+		$query = $this->db->query("SELECT if(COUNT(*) is null,0,COUNT(*)) as TotalClientes FROM appleplanet.tb_usuario where id_loja = ".$_SESSION['id_loja'] ." AND  id_perfil = 1");
 		if($query->num_rows() > 0) {
 			return $query->row()->TotalClientes;
 		} else {
@@ -155,9 +155,7 @@ class Relatorio_Model extends CI_Model {
 				LEFT JOIN tb_produto produto ON produto.id_produto = saida_produto.id_produto
 				LEFT JOIN tb_loja loja ON loja.id_loja = saida_produto.id_loja
 				LEFT JOIN tb_formapagamento formapagamento ON formapagamento.id_formapagamento = saida_produto.id_formapagamento
-				WHERE saida_produto.status = 1
-
-				";
+				WHERE saida_produto.status = 1 AND saida_produto.id_loja = ". $_SESSION['id_loja'];
 
 		$query = $this->db->query($sql);
 
@@ -189,7 +187,11 @@ class Relatorio_Model extends CI_Model {
 				    appleplanet.tb_saida_os saida_os
 				LEFT JOIN tb_usuario usuario ON usuario.id_usuario = saida_os.id_tecnico
 				LEFT JOIN tb_loja loja ON loja.id_loja = saida_os.id_loja
-				LEFT JOIN tb_formapagamento formapagamento ON formapagamento.id_formapagamento = saida_os.id_formapagamento";
+				LEFT JOIN tb_formapagamento formapagamento ON formapagamento.id_formapagamento = saida_os.id_formapagamento
+				
+				WHERE loja.id_loja = ".$_SESSION['id_loja'] ."
+
+				";
 
 		$query = $this->db->query($sql);
 

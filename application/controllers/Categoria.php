@@ -81,7 +81,7 @@ class Categoria extends CI_Controller {
 
                 	$dados = array();
                     $dados['id_categoria']              = $this->input->post('id_categoria');
-                    $dados['id_loja']             		= $this->session->userdata()['id_loja'];
+                    $dados['id_loja']             		= $_SESSION['id_loja'];
                     $dados['id_usuario']                = $this->session->userdata()['id_usuario'];
                     $dados['nome']                      = ucwords($this->input->post('nome_categoria'));
                     $dados['data_cadastro']             = date('Y-m-d H:i:s');

@@ -96,7 +96,7 @@ class Usuario extends CI_Controller {
                 	$dados = array();
                 	$dados['nome'] 						= ucwords($this->input->post('nome'));
                 	$dados['id_perfil'] 				= $this->input->post('perfil');
-                	$dados['id_loja']					= $_SESSION['id_loja'];
+                	$dados['id_loja']					= $this->input->post('loja_id');
                 	$dados['id_criador']				= $_SESSION['id_criador'];
                 	$dados['email'] 					= $this->input->post('email');
                 	$dados['cpf'] 						= $this->input->post('cpf');
@@ -213,8 +213,8 @@ class Usuario extends CI_Controller {
                 	$dados = array();
                 	$dados['nome'] 						= ucwords($this->input->post('nome'));
                 	$dados['id_perfil'] 				= $this->input->post('perfil');
-                	$dados['id_loja']					= ($this->input->post('loja_id')) ? $_SESSION['id_loja'] : $this->input->post('loja_id');
-                	$dados['id_criador']				= $_SESSION['id_criador'];
+					$dados['id_loja']					= $this->input->post('loja_id');
+					$dados['id_criador']				= $_SESSION['id_criador'];
                 	$dados['email'] 					= $this->input->post('email');
                 	
                 	if($this->input->post('tipo_usuario') == 'pf'){
@@ -255,6 +255,7 @@ class Usuario extends CI_Controller {
 			$view['lojas'] 	= $this->Loja_Model->getAll();
 			$view['perfil'] = $this->Perfil_Model->getAll();
 
+			
 			$this->template->set('titulo','Cadastrar Usuário');
 			$this->template->load('template','Usuario/Cadastrar',$view);
 		}
