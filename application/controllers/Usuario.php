@@ -96,7 +96,7 @@ class Usuario extends CI_Controller {
                 	$dados = array();
                 	$dados['nome'] 						= ucwords($this->input->post('nome'));
                 	$dados['id_perfil'] 				= $this->input->post('perfil');
-                	$dados['id_loja']					= $this->input->post('loja_id');
+                	$dados['id_loja']					= $_SESSION['id_loja'];
                 	$dados['id_criador']				= $_SESSION['id_criador'];
                 	$dados['email'] 					= $this->input->post('email');
                 	$dados['cpf'] 						= $this->input->post('cpf');
