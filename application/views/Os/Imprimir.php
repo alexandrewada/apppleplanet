@@ -87,7 +87,7 @@
 
   <div class='os-layout'>
       <div class='logo text-center'  style="
-    padding: 10px;" "><img src='http://www.ingles200h.com/appleplanet/public/images/logo-letra-preta.png'/></div>
+    padding: 10px;" "><img src="<?=base_url('public/images/loog-apple-planet.png');?>"/></div>
       <h5 class='text-left'>N°OS <b>#<?=$os->id_os;?></b></h5>
       <h2 class="text-center">Ordem de Serviço Apple Planet</h2>
     
