@@ -87,7 +87,7 @@
   
   <div class='os-layout'>
       <div class='logo text-center'  style="
-    padding: 10px;" "><img src='http://www.ingles200h.com/appleplanet/public/images/logo-letra-preta.png'/></div>
+    padding: 10px;" "><img src='<?=base_url('public/images/loog-apple-planet.png');?>'/></div>
       <h2 class="text-center">Garantia Apple Planet</h2>
       <div style="font-size: 10px; text-align: center;">
       IPLANET COMERCIO VAREJISTA DE PRODUTOS ELETRONICOS LTDA - EPP | CNPJ: 24.909.865/0001-33<br>Rua Clodomiro Amazonas,1158, Loja 3 - Itaim Bibi - CEP: 04537-002 - São Paulo/SP

@@ -96,7 +96,7 @@
   
   <div class='os-layout'>
       <div class='logo text-center'  style="
-    padding: 10px;" "><img src='http://www.ingles200h.com/appleplanet/public/images/logo-letra-preta.png'/></div>
+    padding: 10px;" "><img src='<?=base_url('public/images/loog-apple-planet.png');?>'/></div>
       <div class='text-left'><b>N° da Venda:</b> <?=$produto->id_saida;?></div>
     
       <h2 class="text-center">Garantia Apple Planet</h2>
