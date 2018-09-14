@@ -81,8 +81,6 @@
 
 
 
-
-
   <body>
 
   <div class='os-layout'>
@@ -91,17 +89,12 @@
       <h5 class='text-left'>N°OS <b>#<?=$os->id_os;?></b></h5>
       <h2 class="text-center">Ordem de Serviço Apple Planet</h2>
     
-      <?if($os->id_loja == 1):?>
         <div style="font-size: 10px; text-align: center;">
-        IPLANET COMERCIO VAREJISTA DE PRODUTOS ELETRONICOS LTDA - EPP | CNPJ: 24.909.865/0001-33 | Telefone (11) 3582-2084 <br>Rua Clodomiro Amazonas,1158, Loja 3 - Itaim Bibi - CEP: 04537-002 - São Paulo/SP
+        <?=getInfoLoja();?>
         </div>
-      <?else:?>
-      <div style="font-size: 10px; text-align: center;">
-        IPLANET COMERCIO VAREJISTA DE PRODUTOS ELETRONICOS LTDA - EPP | CNPJ: 24.909.865/0001-33 | Telefone (11) 3473-6473 <br>Rua Joaquim Nabuco, 192, Brooklin Paulista, São Paulo
-        </div>
-      <?endif;?>
+      
 
-    
+
       <hr></hr>
        <h4>Acompanhe o seu aparelho via web.</h4>
       <div style="font-size: 12px; text-align: left;">

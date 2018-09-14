@@ -101,8 +101,9 @@
     
       <h2 class="text-center">Garantia Apple Planet</h2>
       <div style="font-size: 10px; text-align: center;">
-      IPLANET COMERCIO VAREJISTA DE PRODUTOS ELETRONICOS LTDA - EPP | CNPJ: 24.909.865/0001-33<br>Rua Clodomiro Amazonas,1158, Loja 3 - Itaim Bibi - CEP: 04537-002 - São Paulo/SP
-      </div>
+      <?=getInfoLoja();?>
+      
+    </div>
       <hr></hr>
        <h4>Termo de Garantia</h4>
       <div style="font-size: 12px; text-align: left;">

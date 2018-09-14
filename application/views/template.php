@@ -165,8 +165,10 @@
                             <li><a href="<?=base_url('peca/cadastrar');?>">Entrada de Peças</a></li>
                           <?endif;?>
 
+     <?if(in_array($perfil,array(2)) == true):?>
+                     
                           <li><a href="<?=base_url('peca/saida');?>">Saída de Peças</a></li>
-
+<?endif;?>
 
                           <?if(in_array($perfil,array(2,5,6)) == true):?>
                             <li><a href="<?=base_url('peca/retorno');?>">Retorno de Peças</a></li>
