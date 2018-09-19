@@ -267,6 +267,7 @@ class Os extends CI_Controller {
                                         'cpf'               => preg_replace("/[^0-9]/", "", trim($dadosCliente->cpf)),
                                         'endereco_rua'      => removerAcento(trim($dadosCliente->rua)),
                                         'endereco_numero'   => removerAcento(trim($dadosCliente->rua_numero)),
+                                        'cep'               => removerAcento(trim($dadosCliente->cep)),
                                         'bairro'            => removerAcento(trim($dadosCliente->bairro)),
                                         'codigo_municipio'  => '3550308',
                                         'cidade'         => removerAcento(trim($dadosCliente->cidade)),
@@ -281,6 +282,7 @@ class Os extends CI_Controller {
                                         'endereco_numero'   => removerAcento(trim($dadosCliente->rua_numero)),
                                         'bairro'            => removerAcento(trim($dadosCliente->bairro)),
                                         'codigo_municipio'  => '3550308',
+                                        'cep'               => removerAcento(trim($dadosCliente->cep)),
                                         'cidade'            => removerAcento(trim($dadosCliente->cidade)),
                                         'uf'                => strtoupper(removerAcento(trim($dadosCliente->uf)))
                                     ));
