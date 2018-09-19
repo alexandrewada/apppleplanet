@@ -115,17 +115,15 @@
       </div>
 
 
-	  <? $pecasUsadas = json_decode($os->pecas_usados,true);?>  
-
-      <?if(!empty($pecasGarantia[0]->id_saida_peca)):?>
+    <? $pecasUsadas = json_decode($os->pecas_usados,true);?>
+    
 
       <h4>Peças usadas no conserto</h4>
       <ul>
-      	<?foreach($pecasGarantia as $v):?>
-      	<li><b>N° GARANTIA <?=$v->id_saida_peca;?></b> - <?=$v->nome_peca;?></li>
+      	<?foreach($pecasUsadas as $v):?>
+      	<li><b>N° GARANTIA <?=$v['id_peca'];?></b> - <?=$v['nome_peca'];?></li>
       	<?endforeach;?>
       </ul>
-      <?endif;?>
       <hr></hr>
 
 
