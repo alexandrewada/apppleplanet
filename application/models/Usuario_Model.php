@@ -43,7 +43,7 @@ class Usuario_Model extends CI_Model
     }
 
     public function getByCNPJ($cnpj) {  
-        $query = $this->db->get_where($this->table, array('cnpj' => $cnpj, 'status' => 1));
+        $query = $this->db->get_where($this->table, array('id_loja' => $_SESSION['id_loja'], 'cnpj' => $cnpj, 'status' => 1));
         if($query->num_rows() > 0) {
             return $query->row();
         } else {
