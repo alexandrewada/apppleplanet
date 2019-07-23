@@ -40,11 +40,17 @@ class Notafiscal
 
     }
 
-    public function cancelarNota($chave, $nProt, $just)
+    public function cancelarNota($chave,$just)
     {
-        $retorno = array();
-        $this->nfeTools->sefazCancela($chave, $this->tpAmb, $just, $nProt, $retorno);
-        return $retorno;
+
+        $response  = $this->nfe->cancelarNotaFiscal($chave,$just);
+
+
+        if (isset($response->error)){
+            return $response->error;
+        } else {
+            return true;
+        }
     }
 
     public function destinatario($dados = array())
