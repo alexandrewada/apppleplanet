@@ -43,9 +43,21 @@ class Nota extends CI_Controller {
 	            } else {
 	            
 	        	   	$this->load->library('Notafiscal');
-        			$nota 		= new Notafiscal();
-        			$retorno 	= $nota->cancelarNota($this->input->post('chave'),$this->input->post('nprot'),$this->input->post('motivo'));
-	            	echo json_encode(array('erro' => false, 'msg' => $retorno[evento][0][xMotivo] . '<br> cStat é '.$retorno[evento][0][cStat]. ' procure no google'));
+					$nota 		= new Notafiscal();
+
+					$retorno 	= $nota->cancelarNota($this->input->post('chave'),$this->input->post('nprot'),$this->input->post('motivo'));
+					
+					if($retorno != true) {
+						echo json_encode(array('erro' => true, 'msg' => $retorno));				
+					} else {
+						echo json_encode(array('erro' => false, 'msg' => 'Nota cancelada com sucesso.'));							
+					}
+
+					// if($retorno == true) {
+				  	// } else {
+					// 	echo json_encode(array('erro' => true, 'msg' => $retorno));								
+					// }
+
 	                exit;
 	            }
 		}
