@@ -112,7 +112,7 @@
       <hr></hr>
 
       De acordo com o Código de Defesa do Consumidor n° 39.597-SP. O produto não sendo retirado em 90 dias, será retido para cobrir as despesas do serviço.<br>
-      Em caso de reprovação do orçamento , será cobrado a taxa de diagnóstico de R$99,90 (válido somente para Macs e iMacs)
+      Em caso de reprovação do orçamento , será cobrado a taxa de diagnóstico de R$99,90.
 
       <hr></hr>
       <h4>Dados do Cliente</h4>
