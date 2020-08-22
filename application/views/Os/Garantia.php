@@ -107,7 +107,7 @@
      			<li style="list-style: none;"><div style="width: 15px; height: 15px;border: 1px solid #ccc; float: left;margin-right: 5px;"></div>Carcaça muito amassada</li>
      			<li style="list-style: none;"><div style="width: 15px; height: 15px;border: 1px solid #ccc; float: left;margin-right: 5px;"></div>Aparelho em contato com líquido</li>
      			<li style="list-style: none;"><div style="width: 15px; height: 15px;border: 1px solid #ccc; float: left;margin-right: 5px;"></div>Tela descolando da carcaça</li>
-    	
+    			<li style="list-style: none;"><div style="width: 15px; height: 15px;border: 1px solid #ccc; float: left;margin-right: 5px;"></div>Qualquer problema de software</li>
      		</ul>
      		Todos esses fatores automaticamente serão considerados mal uso do aparelho e cancelará a garantia do serviço prestado ou do aparelho comprado<br>
      		A garantia também não cobre serviços do motoboy.
